@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+        <!--     This DAISY Book was generated with odt2daisy      -->
+        <!--     More info at http://odt2daisy.sourceforge.net     -->
+        <!--     © Copyright 2008 - Vincent Spiewak                -->
+        
+        
+<!DOCTYPE dtbook
+          PUBLIC "-//NISO//DTD dtbook 2005-3//EN" 
+          "http://www.daisy.org/z3986/2005/dtbook-2005-3.dtd">
+
+                
+                <dtbook xmlns="http://www.daisy.org/z3986/2005/dtbook/" version="2005-3" xml:lang="en-US">
+   <head>
+      <meta name="dc:Identifier" content="no-uid"/>
+      <meta name="dc:Language" content="en-US"/>
+      <meta name="dc:Title" content="Not defined Title"/>
+      <meta name="dc:Creator" content="Vincent Spiewak"/>
+      <meta name="dc:Publisher" content="Vincent Spiewak"/>
+      <meta name="dtb:Producer" content="Vincent Spiewak"/>
+      <meta name="dc:Date" content="2009-06-24"/>
+      <meta name="dc:Type" content="Text"/>
+      <meta name="dc:Format" content="ANSI/NISO Z39.86-2005"/>
+      <meta name="dtb:uid" content="no-uid"/>
+      <meta name="dtb:revision" content="1"/>
+      <meta name="dtb:revisionDate" content="2009-06-24"/>
+      <meta name="Generator" content="odt2daisy by Vincent Spiewak"/>
+   </head>
+   <book>
+      <frontmatter>
+         <doctitle>Not defined Title</doctitle>
+         <docauthor>Vincent Spiewak</docauthor>
+         <!--[FrontMatter Mode: None]-->
+      </frontmatter>
+      <bodymatter>
+         <level1>
+            <h1>DAISY Inline Keyboard Input</h1>
+            <p>To copy the selection to the clipboard, press <kbd>CTRL+C</kbd>.</p>
+            <p>Last line.</p>
+         </level1>
+      </bodymatter>
+   </book>
+</dtbook>

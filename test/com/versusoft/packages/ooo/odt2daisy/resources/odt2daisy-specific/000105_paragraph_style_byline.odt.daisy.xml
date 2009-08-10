@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+        <!--     This DAISY Book was generated with odt2daisy      -->
+        <!--     More info at http://odt2daisy.sourceforge.net     -->
+        <!--     © Copyright 2008 - Vincent Spiewak                -->
+        
+        
+<!DOCTYPE dtbook
+          PUBLIC "-//NISO//DTD dtbook 2005-3//EN" 
+          "http://www.daisy.org/z3986/2005/dtbook-2005-3.dtd">
+
+                
+                <dtbook xmlns="http://www.daisy.org/z3986/2005/dtbook/" version="2005-3" xml:lang="en-US">
+   <head>
+      <meta name="dc:Identifier" content="no-uid"/>
+      <meta name="dc:Language" content="en-US"/>
+      <meta name="dc:Title" content="Not defined Title"/>
+      <meta name="dc:Creator" content="Vincent Spiewak"/>
+      <meta name="dc:Publisher" content="Vincent Spiewak"/>
+      <meta name="dtb:Producer" content="Vincent Spiewak"/>
+      <meta name="dc:Date" content="2009-06-24"/>
+      <meta name="dc:Type" content="Text"/>
+      <meta name="dc:Format" content="ANSI/NISO Z39.86-2005"/>
+      <meta name="dtb:uid" content="no-uid"/>
+      <meta name="dtb:revision" content="2"/>
+      <meta name="dtb:revisionDate" content="2009-06-24"/>
+      <meta name="Generator" content="odt2daisy by Vincent Spiewak"/>
+   </head>
+   <book>
+      <frontmatter>
+         <doctitle>Not defined Title</doctitle>
+         <docauthor>Vincent Spiewak</docauthor>
+         <!--[FrontMatter Mode: None]-->
+      </frontmatter>
+      <bodymatter>
+         <level1>
+            <h1>DAISY Byline Paragraph</h1>
+            <byline>By Lori Katz, <em>Riverwood News</em> Staff Reporter</byline>
+            <p>Citing possible health hazards, Mayor Edward Cisko announced </p>
+            <p>today that Riverwood will stop withdrawing water from the </p>
+            <p>Snake River and will temporarily shut down the city's water-</p>
+            <p>treatment plant over water-quality concerns provoked by a </p>
+            <p>massive fish kill. Starting at 6 p.m., river water will not </p>
+            <p>be pumped to the plant for at least three days. If the cause </p>
+            <p>of the fish kill has not been determined and corrected by </p>
+            <p>that time, the shutdown will continue indefinitely.</p>
+         </level1>
+      </bodymatter>
+   </book>
+</dtbook>

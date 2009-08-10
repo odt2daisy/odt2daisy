@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+        <!--     This DAISY Book was generated with odt2daisy      -->
+        <!--     More info at http://odt2daisy.sourceforge.net     -->
+        <!--     © Copyright 2008 - Vincent Spiewak                 -->
+        
+        
+<!DOCTYPE dtbook
+          PUBLIC "-//NISO//DTD dtbook 2005-3//EN" 
+          "http://www.daisy.org/z3986/2005/dtbook-2005-3.dtd">
+
+                
+                <dtbook xmlns="http://www.daisy.org/z3986/2005/dtbook/" version="2005-3" xml:lang="en-US">
+   <head>
+      <meta name="dc:Identifier" content="no-uid"/>
+      <meta name="dc:Language" content="en-US"/>
+      <meta name="dc:Title" content="Not defined Title"/>
+      <meta name="dc:Creator" content="Vincent Spiewak"/>
+      <meta name="dc:Publisher" content="Vincent Spiewak"/>
+      <meta name="dtb:Producer" content="Vincent Spiewak"/>
+      <meta name="dc:Date" content="2009-06-23"/>
+      <meta name="dc:Type" content="Text"/>
+      <meta name="dc:Format" content="ANSI/NISO Z39.86-2005"/>
+      <meta name="dtb:uid" content="no-uid"/>
+      <meta name="dtb:revision" content="1"/>
+      <meta name="dtb:revisionDate" content="2009-06-23"/>
+      <meta name="Generator" content="odt2daisy by Vincent Spiewak"/>
+   </head>
+   <book>
+      <frontmatter>
+         <doctitle>Not defined Title</doctitle>
+         <docauthor>Vincent Spiewak</docauthor>
+         <!--[FrontMatter Mode: None]-->
+      </frontmatter>
+      <bodymatter>
+         <level1>
+            <h1>Heading 1_1</h1>
+            <p>A line (1)</p>
+            <level2>
+               <h2>Heading 2_1</h2>
+               <p>A line (2)</p>
+            </level2>
+            <level2>
+               <h2>Heading 2_2</h2>
+               <p>A line (3)</p>
+            </level2>
+         </level1>
+         <level1>
+            <h1>Heading 1_2</h1>
+            <p>A line (4)</p>
+            <level2>
+               <h2>Heading 2_3</h2>
+               <p>A line (5)</p>
+               <level3>
+                  <h3>Heading 3_1</h3>
+                  <p>A line (6)</p>
+               </level3>
+            </level2>
+         </level1>
+      </bodymatter>
+   </book>
+</dtbook>

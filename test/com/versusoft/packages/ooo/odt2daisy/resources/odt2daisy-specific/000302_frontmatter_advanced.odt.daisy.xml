@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+        <!--     This DAISY Book was generated with odt2daisy      -->
+        <!--     More info at http://odt2daisy.sourceforge.net     -->
+        <!--     © Copyright 2008 - Vincent Spiewak                -->
+        
+        
+<!DOCTYPE dtbook
+          PUBLIC "-//NISO//DTD dtbook 2005-3//EN" 
+          "http://www.daisy.org/z3986/2005/dtbook-2005-3.dtd">
+
+                
+                <dtbook xmlns="http://www.daisy.org/z3986/2005/dtbook/" version="2005-3" xml:lang="en-US">
+   <head>
+      <meta name="dc:Identifier" content="no-uid"/>
+      <meta name="dc:Language" content="en-US"/>
+      <meta name="dc:Title" content="Not defined Title"/>
+      <meta name="dc:Creator" content="Not defined Creator"/>
+      <meta name="dc:Publisher" content="Not defined Publisher"/>
+      <meta name="dtb:Producer" content="Not defined Producer"/>
+      <meta name="dc:Date" content="2009-06-25"/>
+      <meta name="dc:Type" content="Text"/>
+      <meta name="dc:Format" content="ANSI/NISO Z39.86-2005"/>
+      <meta name="dtb:uid" content="no-uid"/>
+      <meta name="dtb:revision" content="1"/>
+      <meta name="dtb:revisionDate" content=""/>
+      <meta name="Generator" content="odt2daisy by Vincent Spiewak"/>
+   </head>
+   <book>
+      <frontmatter>
+         <doctitle>Not defined Title</doctitle>
+         <docauthor>Not defined Creator</docauthor>
+         <!--[FrontMatter Mode: Advanced]-->
+         <level1>
+            <pagenum id="pN67088" page="special">1</pagenum>
+            <h1>Preface</h1>
+            <p>First line of the preface.</p>
+         </level1>
+         <level1>
+            <h1>Acknowledgments</h1>
+            <p>A line</p>
+            <level2 class="print_toc">
+               <h2>Table of Contents</h2>
+               <list class="toc" type="pl">
+                  <li>
+                     <lic class="entry">Preface</lic>
+                     <lic class="pagenum">i</lic>
+                  </li>
+                  <li>
+                     <lic class="entry">Acknowledgments</lic>
+                     <lic class="pagenum">i</lic>
+                  </li>
+                  <li>
+                     <lic class="entry">Chapter 1</lic>
+                     <lic class="pagenum">1</lic>
+                  </li>
+                  <li>
+                     <lic class="entry">Section 1</lic>
+                     <lic class="pagenum">1</lic>
+                  </li>
+                  <li>
+                     <lic class="entry">Section 2</lic>
+                     <lic class="pagenum">1</lic>
+                  </li>
+                  <li>
+                     <lic class="entry">Chapter 2</lic>
+                     <lic class="pagenum">2</lic>
+                  </li>
+                  <li>
+                     <lic class="entry">Section 1</lic>
+                     <lic class="pagenum">2</lic>
+                  </li>
+                  <li>
+                     <lic class="entry">Section 2</lic>
+                     <lic class="pagenum">2</lic>
+                  </li>
+                  <li>
+                     <lic class="entry">Chapter 3</lic>
+                     <lic class="pagenum">3</lic>
+                  </li>
+                  <li>
+                     <lic class="entry">Section 1</lic>
+                     <lic class="pagenum">3</lic>
+                  </li>
+                  <li>
+                     <lic class="entry">Section 2</lic>
+                     <lic class="pagenum">3</lic>
+                  </li>
+                  <li>
+                     <lic class="entry">Appendix</lic>
+                     <lic class="pagenum">I</lic>
+                  </li>
+                  <li>
+                     <lic class="entry">Appendix 1</lic>
+                     <lic class="pagenum">I</lic>
+                  </li>
+                  <li>
+                     <lic class="entry">Appendix 1.1</lic>
+                     <lic class="pagenum">I</lic>
+                  </li>
+                  <li>
+                     <lic class="entry">Appendix 1.2</lic>
+                     <lic class="pagenum">I</lic>
+                  </li>
+                  <li>
+                     <lic class="entry">Appendix 2</lic>
+                     <lic class="pagenum">I</lic>
+                  </li>
+               </list>
+            </level2>
+         </level1>
+      </frontmatter>
+      <bodymatter>
+         <level1 class="chapter">
+            <pagenum id="pN67388" page="normal">1</pagenum>
+            <h1>Chapter 1</h1>
+            <p>A line</p>
+            <level2 class="section">
+               <h2>Section 1</h2>
+               <p>A line</p>
+            </level2>
+            <level2 class="chapter">
+               <h2>Section 2</h2>
+               <p>A line</p>
+            </level2>
+         </level1>
+         <level1 class="chapter">
+            <pagenum id="pN67420" page="normal">2</pagenum>
+            <h1>Chapter 2</h1>
+            <p>A line</p>
+            <level2 class="section">
+               <h2>Section 1</h2>
+               <p>A line</p>
+            </level2>
+            <level2 class="chapter">
+               <h2>Section 2</h2>
+               <p>A line</p>
+            </level2>
+         </level1>
+         <level1 class="chapter">
+            <pagenum id="pN67452" page="normal">3</pagenum>
+            <h1>Chapter 3</h1>
+            <p>A line</p>
+            <level2 class="section">
+               <h2>Section 1</h2>
+               <p>A line</p>
+            </level2>
+            <level2 class="chapter">
+               <h2>Section 2</h2>
+               <p>A line</p>
+            </level2>
+         </level1>
+      </bodymatter>
+      <rearmatter>
+         <level1>
+            <pagenum id="pN67488" page="special">1</pagenum>
+            <h1>Appendix</h1>
+            <p>A line</p>
+            <level2>
+               <h2>Appendix 1</h2>
+               <p>A line</p>
+               <level3>
+                  <h3>Appendix 1.1</h3>
+                  <p>A line</p>
+               </level3>
+               <level3>
+                  <h3>Appendix 1.2</h3>
+                  <p>A line</p>
+               </level3>
+            </level2>
+            <level2>
+               <h2>Appendix 2</h2>
+               <p>A line</p>
+            </level2>
+         </level1>
+      </rearmatter>
+   </book>
+</dtbook>
