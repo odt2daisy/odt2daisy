@@ -180,6 +180,8 @@ public class CommandLineGUI {
                 odt2daisy.paginationProcessing();
             }
 
+            odt2daisy.correctionProcessing();
+
             if (cmd.hasOption("pic")) {
 
                 odt2daisy.convertAsDTBook(cmd.getOptionValue("out"), cmd.getOptionValue("pic"));
@@ -189,8 +191,6 @@ public class CommandLineGUI {
                 logger.info("Language detected: " + odt2daisy.getLangParam());
                 odt2daisy.convertAsDTBook(cmd.getOptionValue("out"), Configuration.DEFAULT_IMAGE_DIR);
             }
-
-            //odt2daisy.correctionProcessing(cmd.getOptionValue("out"));
 
             boolean valid = odt2daisy.validateDTD(cmd.getOptionValue("out"));
 

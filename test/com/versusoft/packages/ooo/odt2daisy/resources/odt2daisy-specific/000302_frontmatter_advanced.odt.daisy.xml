@@ -3,13 +3,13 @@
         <!--     This DAISY Book was generated with odt2daisy      -->
         <!--     More info at http://odt2daisy.sourceforge.net     -->
         <!--     © Copyright 2008 - Vincent Spiewak                -->
-        
-        
+
+
 <!DOCTYPE dtbook
-          PUBLIC "-//NISO//DTD dtbook 2005-3//EN" 
+          PUBLIC "-//NISO//DTD dtbook 2005-3//EN"
           "http://www.daisy.org/z3986/2005/dtbook-2005-3.dtd">
 
-                
+
                 <dtbook xmlns="http://www.daisy.org/z3986/2005/dtbook/" version="2005-3" xml:lang="en-US">
    <head>
       <meta name="dc:Identifier" content="no-uid"/>
@@ -39,6 +39,7 @@
          <level1>
             <h1>Acknowledgments</h1>
             <p>A line</p>
+            <pagenum id="pN67112" page="special">2</pagenum>
             <level2 class="print_toc">
                <h2>Table of Contents</h2>
                <list class="toc" type="pl">
@@ -112,7 +113,7 @@
       </frontmatter>
       <bodymatter>
          <level1 class="chapter">
-            <pagenum id="pN67388" page="normal">1</pagenum>
+            <pagenum id="pN67394" page="normal">1</pagenum>
             <h1>Chapter 1</h1>
             <p>A line</p>
             <level2 class="section">
@@ -125,7 +126,7 @@
             </level2>
          </level1>
          <level1 class="chapter">
-            <pagenum id="pN67420" page="normal">2</pagenum>
+            <pagenum id="pN67426" page="normal">2</pagenum>
             <h1>Chapter 2</h1>
             <p>A line</p>
             <level2 class="section">
@@ -138,7 +139,7 @@
             </level2>
          </level1>
          <level1 class="chapter">
-            <pagenum id="pN67452" page="normal">3</pagenum>
+            <pagenum id="pN67458" page="normal">3</pagenum>
             <h1>Chapter 3</h1>
             <p>A line</p>
             <level2 class="section">
@@ -153,7 +154,7 @@
       </bodymatter>
       <rearmatter>
          <level1>
-            <pagenum id="pN67488" page="special">1</pagenum>
+            <pagenum id="pN67494" page="special">1</pagenum>
             <h1>Appendix</h1>
             <p>A line</p>
             <level2>

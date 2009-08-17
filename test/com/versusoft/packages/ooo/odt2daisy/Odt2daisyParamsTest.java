@@ -77,6 +77,7 @@ public class Odt2daisyParamsTest {
         odt2daisy.setUidParam("no-uid");
         odt2daisy.setWriteCSSParam(false);
         odt2daisy.paginationProcessing();
+        odt2daisy.correctionProcessing();
         odt2daisy.convertAsDTBook(pathDir + odt + ".daisy.unit.xml", odt + ".images");
 
         assertTrue(dir+odt+" - not DTD Valid !",odt2daisy.validateDTD(pathDir + odt + ".daisy.unit.xml"));

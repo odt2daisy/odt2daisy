@@ -95,7 +95,6 @@ public class Odt2Daisy {
 
         OdtUtils odtutil = new OdtUtils();
         odtutil.open(odtFile);
-        odtutil.correctionStep();
         odtutil.saveXML(tmpFlatFile.getAbsolutePath());
 
         preProcessing();
@@ -271,6 +270,25 @@ public class Odt2Daisy {
         try {
 
             OdtUtils.paginationProcessing(tmpFlatFile.getAbsolutePath());
+
+        } catch (ParserConfigurationException ex) {
+            logger.log(Level.SEVERE, null, ex);
+        } catch (SAXException ex) {
+            logger.log(Level.SEVERE, null, ex);
+        } catch (IOException ex) {
+            logger.log(Level.SEVERE, null, ex);
+        } catch (TransformerConfigurationException ex) {
+            logger.log(Level.SEVERE, null, ex);
+        } catch (TransformerException ex) {
+            logger.log(Level.SEVERE, null, ex);
+        }
+    }
+
+
+    public void correctionProcessing() {
+        try {
+
+            OdtUtils.correctionProcessing(tmpFlatFile.getAbsolutePath());
 
         } catch (ParserConfigurationException ex) {
             logger.log(Level.SEVERE, null, ex);
