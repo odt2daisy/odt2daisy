@@ -1351,6 +1351,9 @@
                 <xsl:value-of select="@num" />
             </pagenum>
         </xsl:if>
+        <xsl:if test="name(following-sibling::*[1]) = 'pagenum'">
+            <p><xsl:value-of select="translate($L10N_Blank_Page_X,'@',@num)" /></p>
+        </xsl:if>
     </xsl:template>
     
     <!-- 
