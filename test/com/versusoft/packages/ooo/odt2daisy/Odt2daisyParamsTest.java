@@ -1,8 +1,23 @@
-package com.versusoft.packages.ooo.odt2daisy;
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
+/**
+ *  odt2daisy - OpenDocument to DAISY XML/Audio
+ *
+ *  (c) Copyright 2008 - 2009 by Vincent Spiewak, All Rights Reserved.
+ *
+ *  This program is free software; you can redistribute it and/or modify
+ *  it under the terms of the GNU General Lesser Public License as published by
+ *  the Free Software Foundation; either version 3 of the License, or
+ *  (at your option) any later version.
+ *
+ *  This program is distributed in the hope that it will be useful,
+ *  but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *  GNU Lesser General Public License for more details.
+ *
+ *  You should have received a copy of the GNU Lesser General Public License along
+ *  with this program; if not, write to the Free Software Foundation, Inc.,
+ *  51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
  */
+package com.versusoft.packages.ooo.odt2daisy;
 
 import java.io.File;
 import java.io.FileReader;
@@ -20,14 +35,16 @@ import static org.junit.Assert.*;
 
 /**
  *
- * @author vince
+ * @author Vincent Spiewak
  */
 @RunWith(Parameterized.class)
 public class Odt2daisyParamsTest {
 
     public static String[] dirs = {
         "/com/versusoft/packages/ooo/odt2daisy/resources/general/",
-        "/com/versusoft/packages/ooo/odt2daisy/resources/odt2daisy-specific/"};
+  //    "/com/versusoft/packages/ooo/odt2daisy/resources/jodl-specific/",
+        "/com/versusoft/packages/ooo/odt2daisy/resources/odt2daisy-specific/"
+    };
     
     private static FilenameFilter odtFilter = new FilenameFilter() {
 
@@ -93,7 +110,8 @@ public class Odt2daisyParamsTest {
         boolean identical = myDiff.identical();
 
         assertTrue(dir+odt+" - not identical !" + myDiff, identical);
-       
+
+        odt2daisy = null;
     }
 
     @After

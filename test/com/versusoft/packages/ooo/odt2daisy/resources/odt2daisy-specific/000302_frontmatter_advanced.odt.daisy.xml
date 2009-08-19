@@ -32,14 +32,14 @@
          <docauthor>Not defined Creator</docauthor>
          <!--[FrontMatter Mode: Advanced]-->
          <level1>
-            <pagenum id="pN67088" page="special">1</pagenum>
+            <pagenum id="pN67089" page="special">i</pagenum>
             <h1>Preface</h1>
             <p>First line of the preface.</p>
          </level1>
          <level1>
             <h1>Acknowledgments</h1>
             <p>A line</p>
-            <pagenum id="pN67112" page="special">2</pagenum>
+            <pagenum id="pN67113" page="special">ii</pagenum>
             <level2 class="print_toc">
                <h2>Table of Contents</h2>
                <list class="toc" type="pl">
@@ -113,7 +113,7 @@
       </frontmatter>
       <bodymatter>
          <level1 class="chapter">
-            <pagenum id="pN67394" page="normal">1</pagenum>
+            <pagenum id="pN67395" page="normal">1</pagenum>
             <h1>Chapter 1</h1>
             <p>A line</p>
             <level2 class="section">
@@ -126,7 +126,7 @@
             </level2>
          </level1>
          <level1 class="chapter">
-            <pagenum id="pN67426" page="normal">2</pagenum>
+            <pagenum id="pN67428" page="normal">2</pagenum>
             <h1>Chapter 2</h1>
             <p>A line</p>
             <level2 class="section">
@@ -139,7 +139,7 @@
             </level2>
          </level1>
          <level1 class="chapter">
-            <pagenum id="pN67458" page="normal">3</pagenum>
+            <pagenum id="pN67461" page="normal">3</pagenum>
             <h1>Chapter 3</h1>
             <p>A line</p>
             <level2 class="section">
@@ -154,7 +154,7 @@
       </bodymatter>
       <rearmatter>
          <level1>
-            <pagenum id="pN67494" page="special">1</pagenum>
+            <pagenum id="pN67498" page="special">I</pagenum>
             <h1>Appendix</h1>
             <p>A line</p>
             <level2>

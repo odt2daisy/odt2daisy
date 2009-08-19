@@ -35,15 +35,15 @@
       <bodymatter>
          <level1>
             <h1>Multi Notes Paragraph</h1>
-            <p>Before <annoref idref="#anno_N66607"> </annoref> after and before <annoref idref="#anno_N66618"> </annoref> after...</p>
-            <annotation id="anno_N66607">
+            <p>Before <annoref idref="#anno_N66608"> </annoref> after and before <annoref idref="#anno_N66619"> </annoref> after...</p>
+            <annotation id="anno_N66608">
                <p>
                   <span xml:lang="en-US">This is the text in the note</span>
                </p>
                <author>Vincent Spiewak</author>
                <dateline>06/24/2009, 10:22:57</dateline>
             </annotation>
-            <annotation id="anno_N66618">
+            <annotation id="anno_N66619">
                <p>
                   <span xml:lang="en-US">Another note</span>
                </p>

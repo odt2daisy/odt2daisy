@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+        <!--     This DAISY Book was generated with odt2daisy      -->
+        <!--     More info at http://odt2daisy.sourceforge.net     -->
+        <!--     © Copyright 2008 - Vincent Spiewak                -->
+        
+        
+<!DOCTYPE dtbook
+          PUBLIC "-//NISO//DTD dtbook 2005-3//EN" 
+          "http://www.daisy.org/z3986/2005/dtbook-2005-3.dtd"
+          [
+          <!ENTITY % MATHML.prefixed "INCLUDE" >
+          <!ENTITY % MATHML.prefix "math">
+          <!ENTITY % MATHML.Common.attrib "xlink:href     CDATA       #IMPLIED
+                                           xlink:type     CDATA       #IMPLIED   
+                                           class          CDATA       #IMPLIED
+                                           style          CDATA       #IMPLIED
+                                           id             ID          #IMPLIED
+                                           xref           IDREF       #IMPLIED
+                                           other          CDATA       #IMPLIED
+                                           xmlns:dtbook   CDATA       #FIXED 
+                                             'http://www.daisy.org/z3986/2005/dtbook/'
+                                           dtbook:smilref CDATA       #IMPLIED">    
+          <!ENTITY % mathML2 PUBLIC "-//W3C//DTD MathML 2.0//EN"
+                                    "http://www.w3.org/Math/DTD/mathml2/mathml2.dtd">
+          %mathML2;
+          
+          <!ENTITY % externalFlow "| math:math">
+          <!ENTITY % externalNamespaces "xmlns:math CDATA #FIXED 
+					   'http://www.w3.org/1998/Math/MathML'">      
+          ]>
+
+                
+                <dtbook xmlns="http://www.daisy.org/z3986/2005/dtbook/" xmlns:math="http://www.w3.org/1998/Math/MathML" version="2005-3" xml:lang="en-US">
+   <head>
+      <meta name="dc:Identifier" content="no-uid"/>
+      <meta name="dc:Language" content="en-US"/>
+      <meta name="dc:Title" content="Not defined Title"/>
+      <meta name="dc:Creator" content="Vincent Spiewak"/>
+      <meta name="dc:Publisher" content="Vincent Spiewak"/>
+      <meta name="dtb:Producer" content="Vincent Spiewak"/>
+      <meta name="dc:Date" content="2009-06-25"/>
+      <meta name="dc:Type" content="Text"/>
+      <meta name="dc:Format" content="ANSI/NISO Z39.86-2005"/>
+      <meta name="dtb:uid" content="no-uid"/>
+      <meta name="dtb:revision" content="4"/>
+      <meta name="dtb:revisionDate" content="2009-08-19"/>
+      <meta name="Generator" content="odt2daisy by Vincent Spiewak"/>
+   </head>
+   <book>
+      <frontmatter>
+         <doctitle>Not defined Title</doctitle>
+         <docauthor>Vincent Spiewak</docauthor>
+         <!--[FrontMatter Mode: None]-->
+      </frontmatter>
+      <bodymatter>
+         <level1>
+            <pagenum id="pN66890" page="normal">1</pagenum>
+            <h1>Manual Page Break Object Index</h1>
+            <p>A simple formula: <math:math alttext="" xmlns:dtbook="http://www.daisy.org/z3986/2005/dtbook/">
+                  <math:semantics>
+                     <math:mrow>
+                        <math:mrow>
+                           <math:mn>1</math:mn>
+                           <math:mo stretchy="false">+</math:mo>
+                           <math:mn>2</math:mn>
+                        </math:mrow>
+                        <math:mo stretchy="false">=</math:mo>
+                        <math:mn>3</math:mn>
+                     </math:mrow>
+                     <math:annotation encoding="StarMath 5.0">1 + 2 = 3</math:annotation>
+                  </math:semantics>
+               </math:math>
+            </p>
+            <p>Another formula: <math:math alttext="" xmlns:dtbook="http://www.daisy.org/z3986/2005/dtbook/">
+                  <math:semantics>
+                     <math:mrow>
+                        <math:mrow>
+                           <math:mn>2</math:mn>
+                           <math:mo stretchy="false">+</math:mo>
+                           <math:mn>3</math:mn>
+                        </math:mrow>
+                        <math:mo stretchy="false">=</math:mo>
+                        <math:mn>5</math:mn>
+                     </math:mrow>
+                     <math:annotation encoding="StarMath 5.0">2 + 3 = 5</math:annotation>
+                  </math:semantics>
+               </math:math>
+            </p>
+            <pagenum id="pN66977" page="normal">2</pagenum>
+            <p>Last line.</p>
+         </level1>
+      </bodymatter>
+   </book>
+</dtbook>
