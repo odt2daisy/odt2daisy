@@ -1348,11 +1348,11 @@
         </xsl:variable>
         <xsl:if test="@render='true'">
             <pagenum id="{concat('p',generate-id())}" page="{$attrPage}">
-                <xsl:value-of select="@num" />
+                <xsl:value-of select="@value" />
             </pagenum>
         </xsl:if>
         <xsl:if test="name(following-sibling::*[1]) = 'pagenum'">
-            <p><xsl:value-of select="translate($L10N_Blank_Page_X,'@',@num)" /></p>
+            <p><xsl:value-of select="translate($L10N_Blank_Page_X,'@',@value)" /></p>
         </xsl:if>
     </xsl:template>
     
