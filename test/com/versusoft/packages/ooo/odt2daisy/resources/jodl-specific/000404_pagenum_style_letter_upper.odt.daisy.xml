@@ -1,0 +1,254 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+        <!--     This DAISY Book was generated with odt2daisy      -->
+        <!--     More info at http://odt2daisy.sourceforge.net     -->
+        <!--     © Copyright 2008 - Vincent Spiewak                -->
+        
+        
+<!DOCTYPE dtbook
+          PUBLIC "-//NISO//DTD dtbook 2005-3//EN" 
+          "http://www.daisy.org/z3986/2005/dtbook-2005-3.dtd">
+
+                
+                <dtbook xmlns="http://www.daisy.org/z3986/2005/dtbook/" version="2005-3" xml:lang="en-US">
+   <head>
+      <meta name="dc:Identifier" content="no-uid"/>
+      <meta name="dc:Language" content="en-US"/>
+      <meta name="dc:Title" content="Not defined Title"/>
+      <meta name="dc:Creator" content="Vincent Spiewak"/>
+      <meta name="dc:Publisher" content="Vincent Spiewak"/>
+      <meta name="dtb:Producer" content="Vincent Spiewak"/>
+      <meta name="dc:Date" content="2009-08-18"/>
+      <meta name="dc:Type" content="Text"/>
+      <meta name="dc:Format" content="ANSI/NISO Z39.86-2005"/>
+      <meta name="dtb:uid" content="no-uid"/>
+      <meta name="dtb:revision" content="4"/>
+      <meta name="dtb:revisionDate" content="2009-08-20"/>
+      <meta name="Generator" content="odt2daisy by Vincent Spiewak"/>
+   </head>
+   <book>
+      <frontmatter>
+         <doctitle>Not defined Title</doctitle>
+         <docauthor>Vincent Spiewak</docauthor>
+         <!--[FrontMatter Mode: None]-->
+      </frontmatter>
+      <bodymatter>
+         <level1>
+            <pagenum id="pN66526" page="special">A</pagenum>
+            <h1>Not defined Title</h1>
+            <p>Page one with letter lower page notation.</p>
+            <p>Page break after.</p>
+            <pagenum id="pN66540" page="special">B</pagenum>
+            <p>Page two with letter lower page notation.</p>
+            <p>Page break after.</p>
+            <pagenum id="pN66554" page="special">C</pagenum>
+            <p>Page three with letter lower page notation.</p>
+            <p>Last line.</p>
+            <pagenum id="pN66568" page="special">D</pagenum>
+            <p>First line.</p>
+            <p>New page after.</p>
+            <pagenum id="pN66582" page="special">E</pagenum>
+            <p>First line.</p>
+            <p>New page after.</p>
+            <pagenum id="pN66596" page="special">F</pagenum>
+            <p>First line.</p>
+            <p>New page after.</p>
+            <pagenum id="pN66610" page="special">G</pagenum>
+            <p>First line.</p>
+            <p>New page after.</p>
+            <pagenum id="pN66624" page="special">H</pagenum>
+            <p>First line.</p>
+            <p>New page after.</p>
+            <pagenum id="pN66638" page="special">I</pagenum>
+            <p>First line.</p>
+            <p>New page after.</p>
+            <pagenum id="pN66652" page="special">J</pagenum>
+            <p>First line.</p>
+            <p>New page after.</p>
+            <pagenum id="pN66666" page="special">K</pagenum>
+            <p>First line.</p>
+            <p>New page after.</p>
+            <pagenum id="pN66680" page="special">L</pagenum>
+            <p>First line.</p>
+            <p>New page after.</p>
+            <pagenum id="pN66694" page="special">M</pagenum>
+            <p>First line.</p>
+            <p>New page after.</p>
+            <pagenum id="pN66708" page="special">N</pagenum>
+            <p>First line.</p>
+            <p>New page after.</p>
+            <pagenum id="pN66722" page="special">O</pagenum>
+            <p>First line.</p>
+            <p>New page after.</p>
+            <pagenum id="pN66736" page="special">P</pagenum>
+            <p>First line.</p>
+            <p>New page after.</p>
+            <pagenum id="pN66750" page="special">Q</pagenum>
+            <p>First line.</p>
+            <p>New page after.</p>
+            <pagenum id="pN66764" page="special">R</pagenum>
+            <p>First line.</p>
+            <p>New page after.</p>
+            <pagenum id="pN66778" page="special">S</pagenum>
+            <p>First line.</p>
+            <p>New page after.</p>
+            <pagenum id="pN66792" page="special">T</pagenum>
+            <p>First line.</p>
+            <p>New page after.</p>
+            <pagenum id="pN66806" page="special">U</pagenum>
+            <p>First line.</p>
+            <p>New page after.</p>
+            <pagenum id="pN66820" page="special">V</pagenum>
+            <p>First line.</p>
+            <p>New page after.</p>
+            <pagenum id="pN66834" page="special">W</pagenum>
+            <p>First line.</p>
+            <p>New page after.</p>
+            <pagenum id="pN66848" page="special">X</pagenum>
+            <p>First line.</p>
+            <p>New page after.</p>
+            <pagenum id="pN66862" page="special">Y</pagenum>
+            <p>First line.</p>
+            <p>New page after.</p>
+            <pagenum id="pN66876" page="special">Z</pagenum>
+            <p>First line.</p>
+            <p>New page after.</p>
+            <pagenum id="pN66890" page="special">AA</pagenum>
+            <p>First line.</p>
+            <p>New page after.</p>
+            <pagenum id="pN66904" page="special">AB</pagenum>
+            <p>First line.</p>
+            <p>New page after.</p>
+            <pagenum id="pN66918" page="special">AC</pagenum>
+            <p>First line.</p>
+            <p>New page after.</p>
+            <pagenum id="pN66932" page="special">AD</pagenum>
+            <p>First line.</p>
+            <p>New page after.</p>
+            <pagenum id="pN66946" page="special">AE</pagenum>
+            <p>First line.</p>
+            <p>New page after.</p>
+            <pagenum id="pN66960" page="special">AF</pagenum>
+            <p>First line.</p>
+            <p>New page after.</p>
+            <pagenum id="pN66974" page="special">AG</pagenum>
+            <p>First line.</p>
+            <p>New page after.</p>
+            <pagenum id="pN66988" page="special">AH</pagenum>
+            <p>First line.</p>
+            <p>New page after.</p>
+            <pagenum id="pN67002" page="special">AI</pagenum>
+            <p>First line.</p>
+            <p>New page after.</p>
+            <pagenum id="pN67016" page="special">AJ</pagenum>
+            <p>First line.</p>
+            <p>New page after.</p>
+            <pagenum id="pN67030" page="special">AK</pagenum>
+            <p>First line.</p>
+            <p>New page after.</p>
+            <pagenum id="pN67044" page="special">AL</pagenum>
+            <p>First line.</p>
+            <p>New page after.</p>
+            <pagenum id="pN67058" page="special">AM</pagenum>
+            <p>First line.</p>
+            <p>New page after.</p>
+            <pagenum id="pN67072" page="special">AN</pagenum>
+            <p>First line.</p>
+            <p>New page after.</p>
+            <pagenum id="pN67086" page="special">AO</pagenum>
+            <p>First line.</p>
+            <p>New page after.</p>
+            <pagenum id="pN67100" page="special">AP</pagenum>
+            <p>First line.</p>
+            <p>New page after.</p>
+            <pagenum id="pN67114" page="special">AQ</pagenum>
+            <p>First line.</p>
+            <p>New page after.</p>
+            <pagenum id="pN67128" page="special">AR</pagenum>
+            <p>First line.</p>
+            <p>New page after.</p>
+            <pagenum id="pN67142" page="special">AS</pagenum>
+            <p>First line.</p>
+            <p>New page after.</p>
+            <pagenum id="pN67156" page="special">AT</pagenum>
+            <p>First line.</p>
+            <p>New page after.</p>
+            <pagenum id="pN67170" page="special">AU</pagenum>
+            <p>First line.</p>
+            <p>New page after.</p>
+            <pagenum id="pN67184" page="special">AV</pagenum>
+            <p>First line.</p>
+            <p>New page after.</p>
+            <pagenum id="pN67198" page="special">AW</pagenum>
+            <p>First line.</p>
+            <p>New page after.</p>
+            <pagenum id="pN67212" page="special">AX</pagenum>
+            <p>First line.</p>
+            <p>New page after.</p>
+            <pagenum id="pN67226" page="special">AY</pagenum>
+            <p>First line.</p>
+            <p>New page after.</p>
+            <pagenum id="pN67240" page="special">AZ</pagenum>
+            <p>First line.</p>
+            <p>New page after.</p>
+            <pagenum id="pN67254" page="special">BA</pagenum>
+            <p>First line.</p>
+            <p>New page after.</p>
+            <pagenum id="pN67268" page="special">BB</pagenum>
+            <p>First line.</p>
+            <p>New page after.</p>
+            <pagenum id="pN67282" page="special">BC</pagenum>
+            <p>First line.</p>
+            <p>New page after.</p>
+            <pagenum id="pN67296" page="special">BD</pagenum>
+            <p>First line.</p>
+            <p>New page after.</p>
+            <pagenum id="pN67310" page="special">BE</pagenum>
+            <p>First line.</p>
+            <p>New page after.</p>
+            <pagenum id="pN67324" page="special">BF</pagenum>
+            <p>First line.</p>
+            <p>New page after.</p>
+            <pagenum id="pN67338" page="special">BG</pagenum>
+            <p>First line.</p>
+            <p>New page after.</p>
+            <pagenum id="pN67352" page="special">BH</pagenum>
+            <p>First line.</p>
+            <p>New page after.</p>
+            <pagenum id="pN67366" page="special">BI</pagenum>
+            <p>First line.</p>
+            <p>New page after.</p>
+            <pagenum id="pN67380" page="special">BJ</pagenum>
+            <p>First line.</p>
+            <p>New page after.</p>
+            <pagenum id="pN67394" page="special">BK</pagenum>
+            <p>First line.</p>
+            <p>New page after.</p>
+            <pagenum id="pN67408" page="special">BL</pagenum>
+            <p>First line.</p>
+            <p>New page after.</p>
+            <pagenum id="pN67422" page="special">BM</pagenum>
+            <p>First line.</p>
+            <p>New page after.</p>
+            <pagenum id="pN67436" page="special">BN</pagenum>
+            <p>First line.</p>
+            <p>New page after.</p>
+            <pagenum id="pN67450" page="special">BO</pagenum>
+            <p>First line.</p>
+            <p>New page after.</p>
+            <pagenum id="pN67464" page="special">BP</pagenum>
+            <p>First line.</p>
+            <p>New page after.</p>
+            <pagenum id="pN67478" page="special">BQ</pagenum>
+            <p>First line.</p>
+            <p>New page after.</p>
+            <pagenum id="pN67492" page="special">BR</pagenum>
+            <p>First line.</p>
+            <p>New page after.</p>
+            <pagenum id="pN67506" page="special">BS</pagenum>
+            <p>First line.</p>
+            <p>New page after.</p>
+         </level1>
+      </bodymatter>
+   </book>
+</dtbook>
