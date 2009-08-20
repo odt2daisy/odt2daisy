@@ -42,7 +42,7 @@ public class Odt2daisyParamsTest {
 
     public static String[] dirs = {
         "/com/versusoft/packages/ooo/odt2daisy/resources/general/",
-  //    "/com/versusoft/packages/ooo/odt2daisy/resources/jodl-specific/",
+    //    "/com/versusoft/packages/ooo/odt2daisy/resources/jodl-specific/",
         "/com/versusoft/packages/ooo/odt2daisy/resources/odt2daisy-specific/"
     };
     
