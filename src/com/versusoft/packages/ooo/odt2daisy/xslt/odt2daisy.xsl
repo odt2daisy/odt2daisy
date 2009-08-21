@@ -649,38 +649,39 @@
                     <!-- Part, Chapter, Section, Subsection -->
                     <xsl:variable name="structuringElementName">
                         <xsl:choose>
-                            <xsl:when test="$level=0 and $source='book' and $topStructuringElementName='Part'">
+                            <xsl:when test="@text:outline-level=1 and $source='book' and $topStructuringElementName='Part'">
                                 <xsl:value-of select="'part'"/>
                             </xsl:when>
-                            <xsl:when test="$level=1 and $source='book' and $topStructuringElementName='Part'">
+                            <xsl:when test="@text:outline-level=2 and $source='book' and $topStructuringElementName='Part'">
                                 <xsl:value-of select="'chapter'"/>
                             </xsl:when>
-                            <xsl:when test="$level=2 and $source='book' and $topStructuringElementName='Part'">
+                            <xsl:when test="@text:outline-level=3 and $source='book' and $topStructuringElementName='Part'">
                                 <xsl:value-of select="'section'"/>
                             </xsl:when>
-                            <xsl:when test="$level=3 and $source='book' and $topStructuringElementName='Part'">
+                            <xsl:when test="@text:outline-level=4 and $source='book' and $topStructuringElementName='Part'">
                                 <xsl:value-of select="'subsection'"/>
                             </xsl:when>
-                            <xsl:when test="$level=0 and $source='book' and $topStructuringElementName='Chapter'">
+                            <xsl:when test="@text:outline-level=1 and $source='book' and $topStructuringElementName='Chapter'">
                                 <xsl:value-of select="'chapter'"/>
                             </xsl:when>
-                            <xsl:when test="$level=1 and $source='book' and $topStructuringElementName='Chapter'">
+                            <xsl:when test="@text:outline-level=2 and $source='book' and $topStructuringElementName='Chapter'">
                                 <xsl:value-of select="'section'"/>
                             </xsl:when>
-                            <xsl:when test="$level=2 and $source='book' and $topStructuringElementName='Chapter'">
+                            <xsl:when test="@text:outline-level=3 and $source='book' and $topStructuringElementName='Chapter'">
                                 <xsl:value-of select="'subsection'"/>
                             </xsl:when>
-                            <xsl:when test="$level=0 and $source='book' and $topStructuringElementName='Section'">
+                            <xsl:when test="@text:outline-level=1 and $source='book' and $topStructuringElementName='Section'">
                                 <xsl:value-of select="'section'"/>
                             </xsl:when>
-                            <xsl:when test="$level=1 and $source='book' and $topStructuringElementName='Section'">
+                            <xsl:when test="@text:outline-level=2 and $source='book' and $topStructuringElementName='Section'">
                                 <xsl:value-of select="'subsection'"/>
                             </xsl:when>
                             
                             <!-- Add class attribute for level1 (title_page, acknowledgments, dedication, preface, appendix, ...)-->
-                            <xsl:when test="$level=0 and $source!='book'">
+                            <!--<xsl:when test="$level=0 and $source!='book'">
                                 <xsl:value-of select="$source" />
                             </xsl:when>
+                            -->
                             <xsl:otherwise>
                                 <xsl:value-of select="''"/>
                             </xsl:otherwise>
