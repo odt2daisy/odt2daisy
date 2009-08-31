@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+        <!--     This DAISY Book was generated with odt2daisy      -->
+        <!--     More info at http://odt2daisy.sourceforge.net     -->
+        <!--     © Copyright 2008 - Vincent Spiewak                -->
+        
+        
+<!DOCTYPE dtbook
+          PUBLIC "-//NISO//DTD dtbook 2005-3//EN" 
+          "http://www.daisy.org/z3986/2005/dtbook-2005-3.dtd">
+
+                
+                <dtbook xmlns="http://www.daisy.org/z3986/2005/dtbook/" version="2005-3" xml:lang="en-US">
+   <head>
+      <meta name="dc:Identifier" content="no-uid"/>
+      <meta name="dc:Language" content="en-US"/>
+      <meta name="dc:Title" content="Not defined Title"/>
+      <meta name="dc:Creator" content="Vincent Spiewak"/>
+      <meta name="dc:Publisher" content="Vincent Spiewak"/>
+      <meta name="dtb:Producer" content="Vincent Spiewak"/>
+      <meta name="dc:Date" content="2009-06-25"/>
+      <meta name="dc:Type" content="Text"/>
+      <meta name="dc:Format" content="ANSI/NISO Z39.86-2005"/>
+      <meta name="dtb:uid" content="no-uid"/>
+      <meta name="dtb:revision" content="5"/>
+      <meta name="dtb:revisionDate" content="2009-08-31"/>
+      <meta name="Generator" content="odt2daisy by Vincent Spiewak"/>
+   </head>
+   <book>
+      <frontmatter>
+         <doctitle>Not defined Title</doctitle>
+         <docauthor>Vincent Spiewak</docauthor>
+         <!--[FrontMatter Mode: None]-->
+      </frontmatter>
+      <bodymatter>
+         <level1>
+            <pagenum id="pN66975" page="normal">1</pagenum>
+            <h1>Soft Page Break Table of Content</h1>
+            <p>A line.</p>
+            <level2>
+               <h2>Heading 2</h2>
+               <p>Another line.</p>
+               <level3>
+                  <h3>Heading 3</h3>
+                  <p>A line.</p>
+                  <level4>
+                     <h4>Heading 4</h4>
+                     <p>A line.</p>
+                     <level5>
+                        <h5>Heading 5</h5>
+                        <p>A line.</p>
+                     </level5>
+                  </level4>
+               </level3>
+            </level2>
+         </level1>
+         <level1>
+            <h1>Heading 1</h1>
+            <p>A line.</p>
+            <p>Word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word.</p>
+            <p>Word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word.</p>
+            <p>Word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word.</p>
+            <p>Word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word.</p>
+            <level2 class="print_toc">
+               <h2>Table of Contents</h2>
+               <list class="toc" type="pl">
+                  <pagenum id="pN67225" page="normal">2</pagenum>
+                  <li>
+                     <lic class="entry">Soft Page Break Table of Content</lic>
+                     <lic class="pagenum">1</lic>
+                  </li>
+                  <li>
+                     <lic class="entry">Heading 2</lic>
+                     <lic class="pagenum">1</lic>
+                  </li>
+                  <li>
+                     <lic class="entry">Heading 3</lic>
+                     <lic class="pagenum">1</lic>
+                  </li>
+                  <li>
+                     <lic class="entry">Heading 4</lic>
+                     <lic class="pagenum">1</lic>
+                  </li>
+                  <li>
+                     <lic class="entry">Heading 5</lic>
+                     <lic class="pagenum">1</lic>
+                  </li>
+                  <li>
+                     <lic class="entry">Heading 6</lic>
+                     <lic class="pagenum">1</lic>
+                  </li>
+               </list>
+            </level2>
+            <p>Last line.</p>
+         </level1>
+      </bodymatter>
+   </book>
+</dtbook>
