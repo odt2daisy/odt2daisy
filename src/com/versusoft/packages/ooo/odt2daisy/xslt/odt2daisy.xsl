@@ -1081,7 +1081,7 @@
             
             <!-- Empty Para -->
             <xsl:otherwise>
-                <!--<br />-->
+                <p/>
             </xsl:otherwise>
         </xsl:choose>
     </xsl:template>
