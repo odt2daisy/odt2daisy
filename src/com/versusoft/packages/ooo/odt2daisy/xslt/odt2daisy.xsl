@@ -502,8 +502,8 @@
         -->
         <xsl:param name="excludeNodeId"/>
         <xsl:choose>
-            <xsl:when test="name(current())='text:section' and current()/@text:name='BodyMatterStart'" />
-            <xsl:when test="name(current())='text:section' and current()/@text:name='RearMatterStart'" />
+            <!--<xsl:when test="name(current())='text:section' and current()/@text:name='BodyMatterStart'" />
+            <xsl:when test="name(current())='text:section' and current()/@text:name='RearMatterStart'" />-->
             
             <!-- If the matched element is an address  -->
             <xsl:when test="name(current())='text:p' and @text:style-name='_5b_DAISY_5d__20_Address'">
