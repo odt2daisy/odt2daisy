@@ -298,7 +298,7 @@
                       content="{$paramCreator}" />
                 <meta name="dc:Publisher" 
                       content="{$paramPublisher}" />
-                <meta name="dtb:Producer"
+                <meta name="dtb:producer"
                       content="{$paramProducer}" />
                 <!-- Meta Always in ODT -->
                 <meta name="dc:Date" 
