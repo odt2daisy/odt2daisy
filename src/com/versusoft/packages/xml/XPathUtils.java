@@ -30,18 +30,33 @@ import org.xml.sax.InputSource;
 
 /**
  *
- * @author Administrateur
+ * @author Vincent Spiewak
  */
 public class XPathUtils {
-    
+
+    public static XPathFactory getNewXpathFactory(){
+
+        // OOo bug 102164
+        ClassLoader oldClassLoader = Thread.currentThread().getContextClassLoader();
+        Thread.currentThread().setContextClassLoader(XPathUtils.class.getClassLoader());
+
+        XPathFactory factory = XPathFactory.newInstance();
+
+        Thread.currentThread().setContextClassLoader(oldClassLoader);
+
+        return factory;
+    }
+
     public static Double evaluateNumber(InputStream stream, String expression, NamespaceContext namespace){
+
         Double number = null;
+
         try{
             //creation de la source
             InputSource source = new InputSource(stream);
-            
+
             //creation du XPath
-            XPathFactory fabrique = XPathFactory.newInstance();
+            XPathFactory fabrique = getNewXpathFactory();
             XPath xpath = fabrique.newXPath();
             
             //namespaces
@@ -52,9 +67,10 @@ public class XPathUtils {
             XPathExpression exp = xpath.compile(expression);
             number = (Double)exp.evaluate(source,XPathConstants.NUMBER);
             
-        }catch(XPathExpressionException xpee){
+        } catch(XPathExpressionException xpee){
             xpee.printStackTrace();
         }
+
         return number;
     }
     
@@ -64,13 +80,16 @@ public class XPathUtils {
     
     
     public static Boolean evaluateBoolean(InputStream stream, String expression, NamespaceContext namespace){
+
         Boolean b = null;
-        try{
+
+        try {
+
             //creation de la source
             InputSource source = new InputSource(stream);
-            
+
             //creation du XPath
-            XPathFactory fabrique = XPathFactory.newInstance();
+            XPathFactory fabrique = getNewXpathFactory();
             XPath xpath = fabrique.newXPath();
             
             //namespaces
@@ -81,9 +100,10 @@ public class XPathUtils {
             XPathExpression exp = xpath.compile(expression);
             b = (Boolean)exp.evaluate(source,XPathConstants.BOOLEAN);
             
-        }catch(XPathExpressionException xpee){
+        } catch(XPathExpressionException xpee){
             xpee.printStackTrace();
         }
+
         return b;
     }
     
@@ -92,13 +112,16 @@ public class XPathUtils {
     }
     
     public static String evaluateString(InputStream stream, String expression, NamespaceContext namespace){
+
         String string = null;
-        try{
+
+        try {
+
             //creation de la source
             InputSource source = new InputSource(stream);
             
             //creation du XPath
-            XPathFactory fabrique = XPathFactory.newInstance();
+            XPathFactory fabrique = getNewXpathFactory();
             XPath xpath = fabrique.newXPath();
             
             if(namespace != null){
@@ -109,12 +132,14 @@ public class XPathUtils {
             XPathExpression exp = xpath.compile(expression);
             string = (String)exp.evaluate(source,XPathConstants.STRING);
             
-        }catch(XPathExpressionException xpee){
+        } catch(XPathExpressionException xpee){
             xpee.printStackTrace();
         }
+        
         return string;
     }
-      public static String evaluateString(InputStream stream, String expression){
+
+    public static String evaluateString(InputStream stream, String expression){
         return evaluateString(stream,expression,null);
     }
     
