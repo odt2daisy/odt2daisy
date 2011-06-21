@@ -89,7 +89,7 @@ public class Odt2daisyParamsTest {
         //String basename = odt.substring(0, odt.lastIndexOf('.'));
         String pathDir = this.getClass().getResource(dir).getFile();
 
-        Odt2Daisy odt2daisy = new Odt2Daisy(pathDir + odt);
+        Odt2Daisy odt2daisy = new Odt2Daisy(pathDir + odt); //@@todo add initial output directory URL?
         odt2daisy.init();
         odt2daisy.setUidParam("no-uid");
         odt2daisy.setWriteCSSParam(false);
@@ -100,6 +100,7 @@ public class Odt2daisyParamsTest {
         assertTrue(dir+odt+" - not DTD Valid !",odt2daisy.validateDTD(pathDir + odt + ".daisy.unit.xml"));
         
         XMLUnit.setIgnoreWhitespace(true);
+        XMLUnit.setIgnoreComments(true); // ignoring comments since 2011-06-20 (because of comment "FrontMatter Mode: Basic")
         
         Diff myDiff = new Diff(
                 new FileReader(
