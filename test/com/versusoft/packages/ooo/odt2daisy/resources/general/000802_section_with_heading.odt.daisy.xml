@@ -36,7 +36,9 @@
          <level1>
             <h1>Section with heading</h1>
             <p>A line</p>
-            <h2>Heading 1_2</h2>
+         </level1>
+         <level1>
+            <h1>Heading 1_2</h1>
             <p>A line in the section</p>
             <p>Last line</p>
          </level1>
