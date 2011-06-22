@@ -280,56 +280,53 @@
             
             <!-- HEAD Element -->
             <head>
-                <meta name="dc:Identifier" 
-                      content="{$paramUID}" />
-                <meta name="dc:Language"
-                      content="{$paramLang}" />
+                <meta name="dc:Identifier" content="{$paramUID}" />
+                <meta name="dc:Language" content="{$paramLang}" />
                 <meta name="dc:Title" content="{$paramTitle}" />
                 <xsl:if test="/office:document/office:meta/dc:subject">
-                    <meta name="dc:Subject"  content="{/office:document/office:meta/dc:subject/text()}" />
-                </xsl:if>
-                <xsl:if test="/office:document/office:meta/dc:description">
-                    <meta name="dc:Description"  content="{/office:document/office:meta/dc:description/text()}" />
+                    <meta name="dc:Subject"
+                          content="{/office:document/office:meta/dc:subject/text()}" />
                 </xsl:if>
                 <xsl:for-each select="/office:document/office:meta/meta:keyword">
                     <meta name="dc:Subject"  content="{text()}" />
                 </xsl:for-each>
-                <meta name="dc:Creator" 
-                      content="{$paramCreator}" />
-                <xsl:if test="/office:document/office:meta/dc:title">
-                    <meta name="dtb:sourceTitle" 
-                          content="{/office:document/office:meta/dc:title/text()}" 
-                    />
+                <xsl:if test="/office:document/office:meta/dc:description">
+                    <meta name="dc:Description"
+                          content="{/office:document/office:meta/dc:description/text()}" />
                 </xsl:if>
-                <meta name="dtb:sourcepublisher"
-                      content="{$paramSourcePublisher}" />
-                <meta name="dc:Publisher"
-                      content="{$paramPublisher}" />
+                <meta name="dc:Creator" content="{$paramCreator}" />
+                <meta name="dc:Publisher" content="{$paramPublisher}" />
                 <xsl:if test="/office:document/office:meta/meta:user-defined[@meta:name='dc:source']">
-                  <meta name="dc:Source"
-                        content="{/office:document/office:meta/meta:user-defined[@meta:name='dc:source']/text()}" />
+                    <meta name="dc:Source"
+                          content="{/office:document/office:meta/meta:user-defined[@meta:name='dc:source']/text()}" />
+                </xsl:if>
+                <xsl:if test="/office:document/office:meta/dc:title">
+                    <meta name="dtb:sourceTitle"
+                          content="{/office:document/office:meta/dc:title/text()}"/>
+                </xsl:if>
+                <xsl:if test="/office:document/office:meta/meta:user-defined[@meta:name='dtb:sourcepublisher']">
+                    <meta name="dtb:sourcepublisher"
+                          content="{/office:document/office:meta/meta:user-defined[@meta:name='dtb:sourcepublisher']/text()}" />
                 </xsl:if>
                 <xsl:if test="/office:document/office:meta/meta:user-defined[@meta:name='dtb:sourceedition']">
-                  <meta name="dtb:sourceedition"
-                        content="{/office:document/office:meta/meta:user-defined[@meta:name='dtb:sourceedition']/text()}" />
+                    <meta name="dtb:sourceedition"
+                          content="{/office:document/office:meta/meta:user-defined[@meta:name='dtb:sourceedition']/text()}" />
                 </xsl:if>
                 <xsl:if test="/office:document/office:meta/meta:user-defined[@meta:name='dtb:sourcedate']">
-                  <meta name="dtb:sourcedate"
-                        content="{/office:document/office:meta/meta:user-defined[@meta:name='dtb:sourcedate']/text()}" />
+                    <meta name="dtb:sourcedate"
+                          content="{/office:document/office:meta/meta:user-defined[@meta:name='dtb:sourcedate']/text()}" />
                 </xsl:if>
                 <xsl:if test="/office:document/office:meta/meta:user-defined[@meta:name='dtb:narrator']">
-                  <meta name="dtb:narrator"
-                        content="{/office:document/office:meta/meta:user-defined[@meta:name='dtb:narrator']/text()}" />
+                    <meta name="dtb:narrator"
+                          content="{/office:document/office:meta/meta:user-defined[@meta:name='dtb:narrator']/text()}" />
                 </xsl:if>
-                <meta name="dtb:producer"
-                      content="{$paramProducer}" />
+                <meta name="dtb:producer" content="{$paramProducer}" />
                 <!-- Meta Always in ODT -->
                 <meta name="dc:Date" 
                       content="{substring-before(/office:document/office:meta/meta:creation-date/text(),'T')}" />
                 <meta name="dc:Type" content="Text" />
                 <meta name="dc:Format" content="ANSI/NISO Z39.86-2005" />
-                <meta name="dtb:uid" 
-                      content="{$paramUID}" />
+                <meta name="dtb:uid" content="{$paramUID}" />
                 <meta name="dtb:revision"
                       content="{/office:document/office:meta/meta:editing-cycles/text()}" />
                 <meta name="dtb:revisionDate"
