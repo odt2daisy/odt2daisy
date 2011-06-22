@@ -334,7 +334,7 @@
                       content="{/office:document/office:meta/meta:editing-cycles/text()}" />
                 <meta name="dtb:revisionDate"
                       content="{substring-before(/office:document/office:meta/dc:date/text(),'T')}" />
-                <meta name="Generator" content="odt2daisy 2.1.1 by Vincent Spiewak"/>
+                <meta name="dtb:generator" content="odt2daisy 2.1.1 by Vincent Spiewak"/>
             </head>
             
             <!-- BOOK Element -->
