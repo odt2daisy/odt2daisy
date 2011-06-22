@@ -80,7 +80,7 @@
     Sidebar 	              => OOo Frames
 
     
-    Inlines Elements 		
+    Inline Elements 		
     ================
     
     Anchor 	              => OOo Bookmark 
@@ -119,10 +119,10 @@
     
     File > Properties
     =================
-    - Title: as default value in Export Dialog
+    - Title: as default value in Export Dialog, and as dc:Title
     - Subject: as dc:Subject if present
-    - Keywords: as dc:Subject if presents
-    - Comment: not mapped (?)
+    - Keywords: as dc:Subject if present
+    - Comment: as dc:Description if present
 -->
 <xsl:stylesheet version="1.0" 
                 
@@ -172,11 +172,12 @@
     <!-- XSLT Parameters  -->
     <xsl:param name="L10N_Title_Page" select="'Title Page'" />
     <xsl:param name="L10N_Blank_Page_X" select="'Page @, Blank page'" />
-    <xsl:param name="paramUID" select="'Not defined UID'" />
-    <xsl:param name="paramTitle" select="'Not defined Title'" />
-    <xsl:param name="paramCreator" select="'Not defined Creator'" />
-    <xsl:param name="paramPublisher" select="'Not defined Publisher'" />
-    <xsl:param name="paramProducer" select="'Not defined Producer'" />
+    <xsl:param name="paramUID" select="'Undefined UID'" />
+    <xsl:param name="paramTitle" select="'Undefined Title'" />
+    <xsl:param name="paramCreator" select="'Undefined Creator'" />
+    <xsl:param name="paramPublisher" select="'Undefined Publisher'" />
+    <xsl:param name="paramProducer" select="'Undefined Producer'" />
+    <xsl:param name="paramSourcePublisher" select="'Undefined Source Publisher'" />
     <xsl:param name="paramLang" select="'en-US'" />
     <xsl:param name="paramAlternateMarkup" select="false()" />
     <xsl:param name="paramWriteCSS" select="false()" />
@@ -214,17 +215,17 @@
                         or
                        name(/office:document/office:body/office:text/text:sequence-decls[1]/following-sibling::*[1]) = 'text:h'" />
         <xsl:text disable-output-escaping="yes"><![CDATA[
-        <!--     This DAISY Book was generated with odt2daisy      -->
-        <!--     More info at http://odt2daisy.sourceforge.net     -->
-        <!--     © Copyright 2008 - Vincent Spiewak                -->
+        <!--     This DAISY Book was generated with odt2daisy            -->
+        <!--     More info at http://odt2daisy.sourceforge.net           -->
+        <!--     © Copyright 2008-2011 - Vincent Spiewak & contributors  -->
         ]]>
         </xsl:text>
-        
-        
+
+
         <!-- Output Different Doctype if MathML present -->
         <xsl:choose>
             <xsl:when test="//math:math">
-                
+
                 <!-- Output MathML Modular Doctype -->
                 <xsl:text disable-output-escaping="yes"><![CDATA[
 <!DOCTYPE dtbook
@@ -291,13 +292,39 @@
                 <xsl:if test="/office:document/office:meta/dc:subject">
                     <meta name="dc:Subject"  content="{/office:document/office:meta/dc:subject/text()}" />
                 </xsl:if>
+                <xsl:if test="/office:document/office:meta/dc:description">
+                    <meta name="dc:Description"  content="{/office:document/office:meta/dc:description/text()}" />
+                </xsl:if>
                 <xsl:for-each select="/office:document/office:meta/meta:keyword">
                     <meta name="dc:Subject"  content="{text()}" />
                 </xsl:for-each>
                 <meta name="dc:Creator" 
                       content="{$paramCreator}" />
-                <meta name="dc:Publisher" 
+                <xsl:if test="/office:document/office:meta/dc:title">
+                    <meta name="dtb:sourceTitle" 
+                          content="{/office:document/office:meta/dc:title/text()}" 
+                    />
+                </xsl:if>
+                <meta name="dtb:sourcepublisher"
+                      content="{$paramSourcePublisher}" />
+                <meta name="dc:Publisher"
                       content="{$paramPublisher}" />
+                <xsl:if test="/office:document/office:meta/meta:user-defined[@meta:name='dc:source']">
+                  <meta name="dc:Source"
+                        content="{/office:document/office:meta/meta:user-defined[@meta:name='dc:source']/text()}" />
+                </xsl:if>
+                <xsl:if test="/office:document/office:meta/meta:user-defined[@meta:name='dtb:sourceedition']">
+                  <meta name="dtb:sourceedition"
+                        content="{/office:document/office:meta/meta:user-defined[@meta:name='dtb:sourceedition']/text()}" />
+                </xsl:if>
+                <xsl:if test="/office:document/office:meta/meta:user-defined[@meta:name='dtb:sourcedate']">
+                  <meta name="dtb:sourcedate"
+                        content="{/office:document/office:meta/meta:user-defined[@meta:name='dtb:sourcedate']/text()}" />
+                </xsl:if>
+                <xsl:if test="/office:document/office:meta/meta:user-defined[@meta:name='dtb:narrator']">
+                  <meta name="dtb:narrator"
+                        content="{/office:document/office:meta/meta:user-defined[@meta:name='dtb:narrator']/text()}" />
+                </xsl:if>
                 <meta name="dtb:producer"
                       content="{$paramProducer}" />
                 <!-- Meta Always in ODT -->
@@ -311,7 +338,7 @@
                       content="{/office:document/office:meta/meta:editing-cycles/text()}" />
                 <meta name="dtb:revisionDate"
                       content="{substring-before(/office:document/office:meta/dc:date/text(),'T')}" />
-                <meta name="Generator" content="odt2daisy by Vincent Spiewak"/>
+                <meta name="Generator" content="odt2daisy 2.1.1 by Vincent Spiewak"/>
             </head>
             
             <!-- BOOK Element -->
@@ -332,13 +359,13 @@
                     
                     <!--<xsl:for-each 
                         select="/office:document/office:body/office:text/
-                    text:p[@text:style-name='Signature']">
+                        text:p[@text:style-name='Signature']">
                         
                         <xsl:element name="docauthor">
                             <xsl:value-of select="text()" />
                         </xsl:element>
                         
-                    </xsl:for-each>
+                      </xsl:for-each>
                     -->
                     <xsl:choose>
                         <xsl:when test="$advFrontMatter">
@@ -348,7 +375,7 @@
                         <xsl:when test="$hadHeading and not($noFrontMatter)">
                             <xsl:comment>[FrontMatter Mode: Basic]</xsl:comment>
                             <xsl:call-template name="basicFrontMatter" />
-                            
+
                             <!--<xsl:apply-templates select="/office:document/office:body/office:text/pagenum[1]" mode="frontMatterHierarchy" />-->
                         </xsl:when>
                         <xsl:otherwise>
@@ -439,37 +466,37 @@
     ===========
     -->
     <xsl:template name="basicFrontMatter">
-        
-        <!-- output <level depth=""><hd> style -->
-        <xsl:if test="$paramAlternateMarkup">
-            <level depth="1" class="title_page">
-                <xsl:apply-templates select="/office:document/office:body/office:text/pagenum[1]" />
-                <hd>
-                    <xsl:call-template name="addLangAttrPara" />
-                    <xsl:value-of select="$L10N_Title_Page" />
-                </hd>
-                <xsl:apply-templates select="/office:document/office:body
-                                     /office:text/text:sequence-decls[1]/following-sibling::*[name()!='pagenum'][1]"
+
+            <!-- output <level depth=""><hd> style -->
+            <xsl:if test="$paramAlternateMarkup">
+                <level depth="1" class="title_page">
+                    <xsl:apply-templates select="/office:document/office:body/office:text/pagenum[1]" />
+                    <hd>
+                        <xsl:call-template name="addLangAttrPara" />
+                        <xsl:value-of select="$L10N_Title_Page" />
+                    </hd>
+                    <xsl:apply-templates select="/office:document/office:body
+                                         /office:text/text:sequence-decls[1]/following-sibling::*[name()!='pagenum'][1]"
                                      mode="basicFrontMatterHierarchy">
-                    <xsl:with-param name="level" select="'1'" />
-                </xsl:apply-templates>
-            </level>
-        </xsl:if>
-        <!-- output <level1><h1> style -->
-        <xsl:if test="not($paramAlternateMarkup)">
-            <level1 class="title_page">
-                <xsl:apply-templates select="/office:document/office:body/office:text/pagenum[1]" />
-                <h1>
-                    <xsl:call-template name="addLangAttrPara" />
-                    <xsl:value-of select="$L10N_Title_Page" />
-                </h1>
-                <xsl:apply-templates select="/office:document/office:body
-                                     /office:text/text:sequence-decls[1]/following-sibling::*[name()!='pagenum'][1]"
+                        <xsl:with-param name="level" select="'1'" />
+                    </xsl:apply-templates>
+                </level>
+            </xsl:if>
+            <!-- output <level1><h1> style -->
+            <xsl:if test="not($paramAlternateMarkup)">
+                <level1 class="title_page">
+                    <xsl:apply-templates select="/office:document/office:body/office:text/pagenum[1]" />
+                    <h1>
+                        <xsl:call-template name="addLangAttrPara" />
+                        <xsl:value-of select="$L10N_Title_Page" />
+                    </h1>
+                    <xsl:apply-templates select="/office:document/office:body
+                                         /office:text/text:sequence-decls[1]/following-sibling::*[name()!='pagenum'][1]"
                                      mode="basicFrontMatterHierarchy">
-                    <xsl:with-param name="level" select="'1'" />
-                </xsl:apply-templates>
-            </level1>
-        </xsl:if>
+                        <xsl:with-param name="level" select="'1'" />
+                    </xsl:apply-templates>
+                </level1>
+            </xsl:if>
     </xsl:template>
     <xsl:template match="*|@*" name="basicFrontMatterHierarchy" mode="basicFrontMatterHierarchy">
         <xsl:param name="level" select="'0'"/>
@@ -1775,7 +1802,7 @@
                 /style:style[@style:name=(current()/@draw:style-name)]
         /@style:parent-style-name='Formula'">
             <xsl:apply-templates select="draw:object/math:math" />
-        </xsl:if>
+          </xsl:if>
         <!-- IF this draw:frame is a MathML with Caption -->
         <xsl:if test="/office:document/office:automatic-styles
                 /style:style[@style:name=(current()/@draw:style-name)]
@@ -1814,6 +1841,16 @@
                     </xsl:call-template>
                 </xsl:attribute>
             </xsl:element>
+            <!-- If the image has a (long) description, output it below the image.
+              Note that images can appear inside <p>, hence the <span>.
+            -->
+            <xsl:if test="svg:desc">
+              <xsl:element name="br" />
+              <xsl:element name="span">
+                <xsl:attribute name="class">longdesc</xsl:attribute>
+                <xsl:value-of select="svg:desc/text()" />
+              </xsl:element>
+            </xsl:if>
         </xsl:if>
         <xsl:if test="/office:document/office:automatic-styles
                 /style:style[@style:name=(current()/@draw:style-name)]
@@ -1855,7 +1892,7 @@
             <xsl:attribute name="alttext">
                 <xsl:value-of select="../../svg:title/text()" />
             </xsl:attribute>
-           
+
            <!-- <xsl:attribute name="dtbook:altext" xmlns:dtbook="http://www.daisy.org/z3986/2005/dtbook/"/> -->
             <xsl:variable name="dummy">
                 <dtbook:elem xmlns:dtbook="http://www.daisy.org/z3986/2005/dtbook/"/>
@@ -1868,9 +1905,9 @@
     <xsl:template match="math:*">
         <xsl:element name="{name()}">
             <xsl:for-each select="@*">
-                <xsl:attribute name="{local-name()}">
+        <xsl:attribute name="{local-name()}">
                     <xsl:value-of select="normalize-space(.)" />
-                </xsl:attribute>
+        </xsl:attribute>
             </xsl:for-each>
             <xsl:apply-templates />
         </xsl:element>
