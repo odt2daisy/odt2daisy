@@ -209,10 +209,7 @@
         </xsl:if>
         <xsl:variable name="advFrontMatter" select="/office:document/office:body/office:text/text:section[@text:name='BodyMatterStart'][1]" />
         <xsl:variable name="advRearMatter" select="/office:document/office:body/office:text/text:section[@text:name='RearMatterStart'][1]" />
-        <xsl:variable name="hadHeading" select="//text:h[1]" />
-        <xsl:variable name="noFrontMatter" select="name(/office:document/office:body/office:text/pagenum[1]/following-sibling::*[1]) = 'text:h'
-                        or
-                       name(/office:document/office:body/office:text/text:sequence-decls[1]/following-sibling::*[1]) = 'text:h'" />
+
         <xsl:text disable-output-escaping="yes"><![CDATA[
         <!--     This DAISY Book was generated with odt2daisy            -->
         <!--     More info at http://odt2daisy.sourceforge.net           -->
@@ -369,16 +366,12 @@
                     <xsl:choose>
                         <xsl:when test="$advFrontMatter">
                             <xsl:comment>[FrontMatter Mode: Advanced]</xsl:comment>
-                            <xsl:apply-templates select="/office:document/office:body/office:text/text:sequence-decls[1]/following-sibling::text:h[1]" mode="hierarchy" />
-                        </xsl:when>
-                        <xsl:when test="$hadHeading and not($noFrontMatter)">
-                            <xsl:comment>[FrontMatter Mode: Basic]</xsl:comment>
-                            <xsl:call-template name="basicFrontMatter" />
-
-                            <!--<xsl:apply-templates select="/office:document/office:body/office:text/pagenum[1]" mode="frontMatterHierarchy" />-->
+                            <xsl:call-template name="titlePage" />
+                            <xsl:apply-templates select="/office:document/office:body/office:text/text:sequence-decls[1]/following-sibling::text:h[1][following-sibling::text:section[@text:name='BodyMatterStart']]" mode="hierarchy" />
                         </xsl:when>
                         <xsl:otherwise>
-                            <xsl:comment>[FrontMatter Mode: None]</xsl:comment>
+                            <xsl:comment>[FrontMatter Mode: Basic]</xsl:comment>
+                            <xsl:call-template name="titlePage" />
                         </xsl:otherwise>
                     </xsl:choose>
                 </xsl:element><!-- END FRONTMATTER Element --> 
@@ -461,11 +454,11 @@
     
     <!-- 
     ===========
-    FRONTMATTER
+    TITLEPAGE [ replaces: FRONTMATTER ]
     ===========
     -->
-    <xsl:template name="basicFrontMatter">
-
+    <xsl:template name="titlePage">
+        <xsl:if test="/office:document/office:body/office:text//text:h[1] and not(/office:document/office:body/office:text/text:sequence-decls[1]/following-sibling::*[name()!='pagenum'][1][self::text:h])">		
             <!-- output <level depth=""><hd> style -->
             <xsl:if test="$paramAlternateMarkup">
                 <level depth="1" class="title_page">
@@ -476,7 +469,7 @@
                     </hd>
                     <xsl:apply-templates select="/office:document/office:body
                                          /office:text/text:sequence-decls[1]/following-sibling::*[name()!='pagenum'][1]"
-                                     mode="basicFrontMatterHierarchy">
+                                         mode="titlePageHierarchy">
                         <xsl:with-param name="level" select="'1'" />
                     </xsl:apply-templates>
                 </level>
@@ -491,13 +484,14 @@
                     </h1>
                     <xsl:apply-templates select="/office:document/office:body
                                          /office:text/text:sequence-decls[1]/following-sibling::*[name()!='pagenum'][1]"
-                                     mode="basicFrontMatterHierarchy">
+                                         mode="titlePageHierarchy">
                         <xsl:with-param name="level" select="'1'" />
                     </xsl:apply-templates>
                 </level1>
             </xsl:if>
+        </xsl:if>
     </xsl:template>
-    <xsl:template match="*|@*" name="basicFrontMatterHierarchy" mode="basicFrontMatterHierarchy">
+    <xsl:template match="*|@*" name="titlePageHierarchy" mode="titlePageHierarchy">
         <xsl:param name="level" select="'0'"/>
         <xsl:choose>
             <xsl:when test="name()='text:h'" />
@@ -505,7 +499,7 @@
                 <xsl:call-template name="allTags">
                     <xsl:with-param name="level" select="$level" />
                 </xsl:call-template>
-                <xsl:apply-templates select="following-sibling::*[1]" mode="basicFrontMatterHierarchy">
+                <xsl:apply-templates select="following-sibling::*[1]" mode="titlePageHierarchy">
                     <xsl:with-param name="level" select="$level" />
                 </xsl:apply-templates>
             </xsl:otherwise>
