@@ -17,6 +17,7 @@
       <meta name="dc:Title" content="Title of document"/>
       <meta name="dc:Subject" content="Subject of the document"/>
       <meta name="dc:Subject" content="keyword1 keyword2 keyword3"/>
+      <meta name="dc:Description" content="Comment line one&#10;Comment line two"/>
       <meta name="dc:Creator" content="Vincent Spiewak"/>
       <meta name="dc:Publisher" content="Undefined Publisher"/>
       <meta name="dtb:producer" content="Undefined Producer"/>
