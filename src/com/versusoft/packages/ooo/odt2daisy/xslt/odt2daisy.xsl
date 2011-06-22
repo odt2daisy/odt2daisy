@@ -147,10 +147,9 @@
                 xmlns:xforms="http://www.w3.org/2002/xforms" 
                 xmlns:xsd="http://www.w3.org/2001/XMLSchema" 
                 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-                xmlns:exsl="http://exslt.org/common"
                 xmlns:xalan="http://xml.apache.org/xslt" 
                 xmlns="http://www.daisy.org/z3986/2005/dtbook/"
-                exclude-result-prefixes="exsl office style dom xforms xsi xsd text table draw fo xlink number svg chart dr3d math form script dc meta xalan">
+                exclude-result-prefixes="office style dom xforms xsi xsd text table draw fo xlink number svg chart dr3d math form script dc meta xalan">
                     
     <xsl:import  href="measure_conversion.xsl" />                    
     <xsl:variable name="stylesheet" select="document('')/xsl:stylesheet" />
@@ -1793,7 +1792,7 @@
     
     
     <xsl:template match="draw:frame">
-        <!--
+    <!--
     MathML Element
     ==============
     -->    
@@ -1886,32 +1885,33 @@
             </imggroup>
         </xsl:if>
     </xsl:template>
-    <xsl:template match="math:math">
-        <!--<xsl:copy-of select="current()"/>-->
-        <xsl:element name="{name()}">
+
+    <!-- MATH -->
+
+    <xsl:template match="math:math | math">
+        <math:math>
             <xsl:attribute name="alttext">
                 <xsl:value-of select="../../svg:title/text()" />
             </xsl:attribute>
+            <xsl:apply-templates select="node()" mode="math"/>
+        </math:math>
+    </xsl:template>
 
-           <!-- <xsl:attribute name="dtbook:altext" xmlns:dtbook="http://www.daisy.org/z3986/2005/dtbook/"/> -->
-            <xsl:variable name="dummy">
-                <dtbook:elem xmlns:dtbook="http://www.daisy.org/z3986/2005/dtbook/"/>
-            </xsl:variable>
-            <xsl:copy-of select="exsl:node-set($dummy)/*/namespace::*"/>
-            <xsl:apply-templates select="@* | node()"/>
+    <xsl:template match="*"
+                  mode="math">
+        <xsl:element name="math:{local-name()}">
+            <xsl:apply-templates select="@*|node()"
+                                 mode="math"/>
         </xsl:element>
-        <!--        <xsl:copy-of select="node()" />-->
     </xsl:template>
-    <xsl:template match="math:*">
-        <xsl:element name="{name()}">
-            <xsl:for-each select="@*">
+
+    <xsl:template match="@*"
+                  mode="math">
         <xsl:attribute name="{local-name()}">
-                    <xsl:value-of select="normalize-space(.)" />
+            <xsl:value-of select="." />
         </xsl:attribute>
-            </xsl:for-each>
-            <xsl:apply-templates />
-        </xsl:element>
     </xsl:template>
+
     <xsl:template match="svg:title" />
     
     <!-- Deleted styles -->
@@ -1921,8 +1921,8 @@
       -->
 
     
-    <!--
-  HELPERS TEMPLATES
+  <!--
+  HELPER TEMPLATES
   =================
   -->
     
