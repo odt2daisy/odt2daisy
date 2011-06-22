@@ -1799,9 +1799,15 @@
         <!-- IF this draw:frame is a MathML -->
         <xsl:if test="/office:document/office:automatic-styles
                 /style:style[@style:name=(current()/@draw:style-name)]
-        /@style:parent-style-name='Formula'">
+                /@style:parent-style-name='Formula'">
+          <xsl:if test="draw:object/math:math">
             <xsl:apply-templates select="draw:object/math:math" />
           </xsl:if>
+          <xsl:if test="draw:object/math">
+            <!-- @@TODO fix: creates invalid DAISY XML? -->
+            <xsl:apply-templates select="draw:object/math" />
+          </xsl:if>
+        </xsl:if>
         <!-- IF this draw:frame is a MathML with Caption -->
         <xsl:if test="/office:document/office:automatic-styles
                 /style:style[@style:name=(current()/@draw:style-name)]
