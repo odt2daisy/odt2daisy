@@ -20,6 +20,7 @@
       <meta name="dc:Description" content="Comment line one&#10;Comment line two"/>
       <meta name="dc:Creator" content="Vincent Spiewak"/>
       <meta name="dc:Publisher" content="Undefined Publisher"/>
+      <meta name="dtb:sourceTitle" content="Title of document"/>
       <meta name="dtb:producer" content="Undefined Producer"/>
       <meta name="dc:Date" content="2008-02-21"/>
       <meta name="dc:Type" content="Text"/>
