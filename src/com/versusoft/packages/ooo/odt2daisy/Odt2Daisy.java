@@ -52,8 +52,9 @@ public class Odt2Daisy {
     private String uidParam = null;
     private String titleParam;
     private String creatorParam = null;
-    private String publisherParam = null;
+    private String dtbPublisherParam = null;
     private String producerParam = null;
+    private String sourcePublisherParam = null;
     private String langParam = null;
     private boolean useAlternateLevelParam = false;
     private boolean writeCSS = false;
@@ -63,6 +64,9 @@ public class Odt2Daisy {
     private boolean useHeadings;
     private String creatorMeta;
     private String titleMeta;
+    private String sourcePublisher;
+    private String dtbPublisher;
+    private String dtbProducer;
     private String languageDoc;
     private static final Logger logger = Logger.getLogger("com.versusoft.packages.ooo.odt2daisy");
 
@@ -74,6 +78,7 @@ public class Odt2Daisy {
     public Odt2Daisy(String odtFile) {
         this.odtFile = odtFile;
     }
+    //@@todo add constructor that uses initial output directory as second parameter?
 
     /**
      * init - must be call first
@@ -114,13 +119,17 @@ public class Odt2Daisy {
         useHeadings = (getODTHeadingsCount() > 0);
         creatorMeta = getODTCreatorMeta();
         titleMeta = getODTTitleMeta();
+        sourcePublisher = getODTSourcePublisher();
+        dtbProducer = getDAISYProducer();
+        dtbPublisher = getDAISYPublisher();
         languageDoc = getODTLanguage();
 
         setUidParam(UUID.randomUUID().toString());
         setTitleParam(titleMeta);
         setCreatorParam(creatorMeta);
-        setPublisherParam(creatorMeta);
-        setProducerParam(creatorMeta);
+        setPublisherParam(dtbPublisher);
+        setProducerParam(dtbProducer);
+        setSourcePublisherParam(sourcePublisher);
         setLangParam(languageDoc);
         setUseAlternateLevelParam(false);
 
@@ -169,6 +178,7 @@ public class Odt2Daisy {
         String baseDir = parent + System.getProperty("file.separator");
 
         OdtUtils.extractAndNormalizedEmbedPictures(tmpFlatFile.getAbsolutePath(), odtFile, baseDir, imageDir);
+        //@todo check images types (file name extensions) after modifying OdtUtils.extractAndNormalizedEmbedPictures to return an array of image names?
 
         logger.fine("done");
 
@@ -188,14 +198,14 @@ public class Odt2Daisy {
         // Apply XSLT transform
         TransformerFactory tFactory = TransformerFactory.newInstance();
         //tFactory.setAttribute("indent-number",new Integer(3));
-        Transformer transformer;
+        Transformer preTransformer, transformer;
 
         // L10N Parameter Trick
         Locale ODTlocale = new Locale(getODTLanguage().substring(0, 2));
         Locale oldLocale = Locale.getDefault();
         Locale.setDefault(ODTlocale);
 
-
+        preTransformer = tFactory.newTransformer(new StreamSource(getClass().getResource("/com/versusoft/packages/ooo/odt2daisy/xslt/flatten-sections.xsl").toString()));
         transformer = tFactory.newTransformer(new StreamSource(getClass().getResource("/com/versusoft/packages/ooo/odt2daisy/xslt/odt2daisy.xsl").toString()));
 
 
@@ -240,6 +250,14 @@ public class Odt2Daisy {
                     ResourceBundle.getBundle("com/versusoft/packages/ooo/odt2daisy/xslt/l10n/Bundle", ODTlocale).getString("Undefined_Producer"));
         }
 
+        if (getSourcePublisherParam().length() > 0) {
+            transformer.setParameter("paramSourcePublisher", getSourcePublisherParam());
+        } else {
+            transformer.setParameter(
+                    "paramSourcePublisher",
+                    ResourceBundle.getBundle("com/versusoft/packages/ooo/odt2daisy/xslt/l10n/Bundle", ODTlocale).getString("Undefined_Publisher")); //@todo add Undefined_sourcePublisher to L10N
+        }
+
         transformer.setParameter(
                 "L10N_Title_Page",
                 ResourceBundle.getBundle("com/versusoft/packages/ooo/odt2daisy/xslt/l10n/Bundle", ODTlocale).getString("Title_Page"));
@@ -259,7 +277,15 @@ public class Odt2Daisy {
         // reset default locale
         Locale.setDefault(oldLocale);
 
-        transformer.transform(new StreamSource(tmpFlatFile),
+        File tmpFlatFile2 = File.createTempFile(
+                Configuration.TMP_FLAT_XML_PREFIX,
+                Configuration.TMP_FLAT_XML_SUFFIX);
+        tmpFlatFile2.deleteOnExit();
+		
+        preTransformer.transform(new StreamSource(tmpFlatFile),
+                new StreamResult(tmpFlatFile2));
+
+        transformer.transform(new StreamSource(tmpFlatFile2),
                 new StreamResult(dtbookFile));
 
         logger.fine("done.");
@@ -482,18 +508,52 @@ public class Odt2Daisy {
                 Configuration.namespace);
     }
 
+    /**
+     * Get the creator of the source document.
+     * @return The custom property "dc:creator", if available; else the standard "dc:creator" element.
+     * @throws MalformedURLException
+     * @throws IOException
+     */
     private String getODTCreatorMeta() throws MalformedURLException, IOException {
-        return XPathUtils.evaluateString(tmpFlatFile.toURL().openStream(),
-                "/office:document/office:meta/dc:creator/text()",
+        String creator = "";
+        creator = XPathUtils.evaluateString(tmpFlatFile.toURL().openStream(),
+                "/office:document/office:meta/meta:user-defined[@meta:name='dc:creator']/text()",
                 Configuration.namespace);
+        if (creator.length() == 0) {
+            creator = XPathUtils.evaluateString(tmpFlatFile.toURL().openStream(),
+                    "/office:document/office:meta/dc:creator/text()",
+                    Configuration.namespace);
+        }
+        return creator;
     }
 
+    /**
+     * Get the document title from the document properties (dc:title).
+     *   If the title property is empty, the first Title style is used as a fallback.
+     * @return Document title, as String
+     * @throws MalformedURLException
+     * @throws IOException
+     */
     private String getODTTitleMeta() throws MalformedURLException, IOException {
-        return XPathUtils.evaluateString(tmpFlatFile.toURL().openStream(),
+        String title = "";
+        title = XPathUtils.evaluateString(tmpFlatFile.toURL().openStream(),
                 "/office:document/office:meta/dc:title/text()",
                 Configuration.namespace);
+        if (title.length() == 0) {
+            title = XPathUtils.evaluateString(tmpFlatFile.toURL().openStream(),
+                "/office:document/office:body/office:text/text:p[@text:style-name='Title'][1]/text()",
+                Configuration.namespace);
+        }
+        logger.fine("DocumentTitle=\'" + title + "\'");
+        return title;
     }
 
+    /**
+     * Get the default language from the ODF document.
+     * @return An ISO 639 string in the format xx-YY, representing the language and variant/country (e.g. en-US, nl-BE, fr-FR).
+     * @throws MalformedURLException
+     * @throws IOException
+     */
     private String getODTLanguage() throws MalformedURLException, IOException {
         return XPathUtils.evaluateString(tmpFlatFile.toURL().openStream(),
                 "/office:document/office:styles/style:default-style/style:text-properties/@fo:language",
@@ -502,6 +562,52 @@ public class Odt2Daisy {
                 "/office:document/office:styles/style:default-style/style:text-properties/@fo:country",
                 Configuration.namespace).toUpperCase();
     }
+
+    /**
+     * Get the publisher of the source document (dtb:sourcepublisher in the DAISY standard) from the ODF custom properties.
+     * @return The publisher of the source document, as String.
+     * @throws MalformedURLException
+     * @throws IOException
+     */
+    private String getODTSourcePublisher() throws MalformedURLException, IOException {
+        String srcPublisher = "";
+        srcPublisher = XPathUtils.evaluateString(tmpFlatFile.toURL().openStream(),
+                "/office:document/office:meta/meta:user-defined[@meta:name='dtb:sourcepublisher']/text()",
+                Configuration.namespace);
+        logger.fine("SourcePublisher=\'" + srcPublisher + "\'");
+        return srcPublisher;
+    }
+
+    /**
+     * Get the producer of the DAISY book (dtb:producer in DAISY the DAISY standard) from the ODF custom properties.
+     * @return The producer of the DAISY book, as String
+     * @throws MalformedURLException
+     * @throws IOException
+     */
+    private String getDAISYProducer() throws MalformedURLException, IOException {
+        String producer = "";
+        producer = XPathUtils.evaluateString(tmpFlatFile.toURL().openStream(),
+                "/office:document/office:meta/meta:user-defined[@meta:name='dtb:producer']/text()",
+                Configuration.namespace);
+        logger.fine("DAISYProducer=\'" + producer + "\'");
+        return producer;
+    }
+
+    /**
+     * Get the publisher of the DAISY book (dc:publisher in the DAISY standard) from the ODF custom properties.
+     * @return The publisher of the DAISY book, as String
+     * @throws MalformedURLException
+     * @throws IOException
+     */
+    private String getDAISYPublisher() throws MalformedURLException, IOException {
+        String publisher = "";
+        publisher = XPathUtils.evaluateString(tmpFlatFile.toURL().openStream(),
+                "/office:document/office:meta/meta:user-defined[@meta:name='dtb:publisher']/text()",
+                Configuration.namespace);
+        logger.fine("DAISYPublisher=\'" + publisher + "\'");
+        return publisher;
+    }
+
 
     public boolean isEmptyDocument() throws MalformedURLException, IOException {
         return XPathUtils.evaluateBoolean(tmpFlatFile.toURL().openStream(),
@@ -521,12 +627,24 @@ public class Odt2Daisy {
         this.creatorParam = creatorParam;
     }
 
-    public void setPublisherParam(String publisherParam) {
-        this.publisherParam = publisherParam;
+    /**
+     * Set the name of the publisher of the DAISY book (not necessarily the same as the source publisher or the DAISY producer).
+     * @param dtbPublisherParam The name of the publisher of the DAISY book, as String.
+     */
+    public void setPublisherParam(String dtbPublisherParam) {
+        this.dtbPublisherParam = dtbPublisherParam;
     }
 
     public void setProducerParam(String producerParam) {
         this.producerParam = producerParam;
+    }
+
+    /**
+     * Set the name of the publisher of the source document (usually not the same as the DAISY publisher/producer).
+     * @param sourcePublisherParam The name of the publisher of the source document, as String.
+     */
+    public void setSourcePublisherParam(String sourcePublisherParam) {
+        this.sourcePublisherParam = sourcePublisherParam;
     }
 
     private void setLangParam(String langParam) {
@@ -562,11 +680,15 @@ public class Odt2Daisy {
     }
 
     public String getPublisherParam() {
-        return publisherParam;
+        return dtbPublisherParam;
     }
 
     public String getProducerParam() {
         return producerParam;
+    }
+
+    public String getSourcePublisherParam() {
+        return sourcePublisherParam;
     }
 
     public String getLangParam() {
