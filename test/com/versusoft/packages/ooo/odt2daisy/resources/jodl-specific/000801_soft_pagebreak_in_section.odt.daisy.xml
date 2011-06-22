@@ -18,15 +18,15 @@
       <meta name="dc:Subject" content="DAISY multimedia authoring"/>
       <meta name="dc:Subject" content="DAISY"/>
       <meta name="dc:Creator" content="Vincent Spiewak"/>
-      <meta name="dc:Publisher" content="Vincent Spiewak"/>
-      <meta name="dtb:producer" content="Vincent Spiewak"/>
+      <meta name="dc:Publisher" content="Undefined Publisher"/>
+      <meta name="dtb:producer" content="Undefined Producer"/>
       <meta name="dc:Date" content="2008-10-13"/>
       <meta name="dc:Type" content="Text"/>
       <meta name="dc:Format" content="ANSI/NISO Z39.86-2005"/>
       <meta name="dtb:uid" content="no-uid"/>
       <meta name="dtb:revision" content="256"/>
       <meta name="dtb:revisionDate" content="2009-10-05"/>
-      <meta name="Generator" content="odt2daisy by Vincent Spiewak"/>
+      <meta name="dtb:generator" content="odt2daisy 2.1.1 by Vincent Spiewak"/>
    </head>
    <book>
       <frontmatter>
