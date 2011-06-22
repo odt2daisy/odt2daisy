@@ -31,6 +31,12 @@
          <doctitle>Undefined Title</doctitle>
          <docauthor>Undefined Creator</docauthor>
          <!--[FrontMatter Mode: Advanced]-->
+         <level1 class="title_page">
+            <h1>Title Page</h1>
+            <p>Title</p>
+            <p>Subtitle</p>
+            <author>Author</author>
+         </level1>
          <level1>
             <pagenum id="pN67089" page="special">i</pagenum>
             <h1>Preface</h1>
