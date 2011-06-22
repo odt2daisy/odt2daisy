@@ -14,7 +14,7 @@
    <head>
       <meta name="dc:Identifier" content="no-uid"/>
       <meta name="dc:Language" content="en-US"/>
-      <meta name="dc:Title" content="Undefined Title"/>
+      <meta name="dc:Title" content="Title of the book"/>
       <meta name="dc:Creator" content="Vincent Spiewak"/>
       <meta name="dc:Publisher" content="Undefined Publisher"/>
       <meta name="dtb:producer" content="Undefined Producer"/>
@@ -28,7 +28,7 @@
    </head>
    <book>
       <frontmatter>
-         <doctitle>Undefined Title</doctitle>
+         <doctitle>Title of the book</doctitle>
          <docauthor>Vincent Spiewak</docauthor>
          <!--[FrontMatter Mode: Basic]-->
          <level1 class="title_page">
