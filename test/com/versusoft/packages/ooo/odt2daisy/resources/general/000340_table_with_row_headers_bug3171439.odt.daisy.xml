@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+        <!--     This DAISY Book was generated with odt2daisy            -->
+        <!--     More info at http://odt2daisy.sourceforge.net           -->
+        <!--     © Copyright 2008-2011 - Vincent Spiewak & contributors  -->
+        
+        
+<!DOCTYPE dtbook
+          PUBLIC "-//NISO//DTD dtbook 2005-3//EN" 
+          "http://www.daisy.org/z3986/2005/dtbook-2005-3.dtd">
+
+                
+                <dtbook xmlns="http://www.daisy.org/z3986/2005/dtbook/" version="2005-3" xml:lang="en-GB">
+   <head>
+      <meta name="dc:Identifier" content="no-uid"/>
+      <meta name="dc:Language" content="en-GB"/>
+      <meta name="dc:Title" content="Table Heading Style in Row Headers (bug 3171439)"/>
+      <meta name="dc:Description" content="English translation of test file submitted with bug 3171439: http://sourceforge.net/tracker/?func=detail&amp;aid=3171439&amp;group_id=272398&amp;atid=1158051&#10;When Table Heading style is applied to the first column to create row headers, this row (i.e. with the column headers) is not converted to DAISY by odt2daisy 2.1."/>
+      <meta name="dc:Creator" content="Christophe Strobbe"/>
+      <meta name="dc:Publisher" content="Undefined Publisher"/>
+      <meta name="dtb:sourceTitle" content="Table Heading Style in Row Headers (bug 3171439)"/>
+      <meta name="dtb:producer" content="Undefined Producer"/>
+      <meta name="dc:Date" content="2011-02-03"/>
+      <meta name="dc:Type" content="Text"/>
+      <meta name="dc:Format" content="ANSI/NISO Z39.86-2005"/>
+      <meta name="dtb:uid" content="no-uid"/>
+      <meta name="dtb:revision" content="8"/>
+      <meta name="dtb:revisionDate" content="2011-06-23"/>
+      <meta name="dtb:generator" content="odt2daisy 2.1.1 by Vincent Spiewak"/>
+   </head>
+   <book>
+      <frontmatter>
+         <doctitle>Table Heading Style in Row Headers (bug 3171439)</doctitle>
+         <docauthor>Christophe Strobbe</docauthor>
+         <!--[FrontMatter Mode: Basic]-->
+         <level1 class="title_page">
+            <h1>Title Page</h1>
+            <p>Table Heading Style in Row Headers (bug 3171439)</p>
+         </level1>
+      </frontmatter>
+      <bodymatter>
+         <level1>
+            <h1>A Table with Both Row and Column Headers</h1>
+            <table>
+               <thead>
+                  <tr>
+                     <th>
+                        <p>Variable</p>
+                     </th>
+                     <th>
+                        <p>Sample Size</p>
+                     </th>
+                     <th>
+                        <p>Average</p>
+                     </th>
+                     <th>
+                        <p>s squared</p>
+                     </th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr>
+                     <th>
+                        <p>Sample 1</p>
+                     </th>
+                     <td>
+                        <p>10</p>
+                     </td>
+                     <td>
+                        <p>64,8</p>
+                     </td>
+                     <td>
+                        <p>36</p>
+                     </td>
+                  </tr>
+                  <tr>
+                     <th>
+                        <p>Sample 2</p>
+                     </th>
+                     <td>
+                        <p>15</p>
+                     </td>
+                     <td>
+                        <p>66</p>
+                     </td>
+                     <td>
+                        <p>28</p>
+                     </td>
+                  </tr>
+               </tbody>
+            </table>
+         </level1>
+      </bodymatter>
+   </book>
+</dtbook>
