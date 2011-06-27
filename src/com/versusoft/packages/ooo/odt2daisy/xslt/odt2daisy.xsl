@@ -8,7 +8,7 @@
 /**
  *  odt2daisy - OpenDocument to DAISY XML/Audio
  *
- *  (c) Copyright 2008 - 2009 by Vincent Spiewak, All Rights Reserved.
+ *  (c) Copyright 2008 - 20011 by Vincent Spiewak and contributors, All Rights Reserved.
  *
  *  This program is free software; you can redistribute it and/or modify
  *  it under the terms of the GNU General Lesser Public License as published by
@@ -331,7 +331,9 @@
                       content="{/office:document/office:meta/meta:editing-cycles/text()}" />
                 <meta name="dtb:revisionDate"
                       content="{substring-before(/office:document/office:meta/dc:date/text(),'T')}" />
-                <meta name="dtb:generator" content="odt2daisy 2.1.1 by Vincent Spiewak"/>
+                <meta name="Generator" content="odt2daisy 2.1.1 by Vincent Spiewak"/>
+                <!--using 'dtb:generator' results in a Task Validator error when exporting to Full DAISY, with "DEBUG retcode:2".-->
+                <!--meta name="dtb:generator" content="odt2daisy 2.1.1 by Vincent Spiewak"/-->
             </head>
             
             <!-- BOOK Element -->
