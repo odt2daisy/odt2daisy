@@ -169,6 +169,7 @@
     />
     
     <!-- XSLT Parameters  -->
+    <xsl:param name="DEBUG" select="false()" />
     <xsl:param name="L10N_Title_Page" select="'Title Page'" />
     <xsl:param name="L10N_Blank_Page_X" select="'Page @, Blank page'" />
     <xsl:param name="paramUID" select="'Undefined UID'" />
@@ -1026,18 +1027,18 @@
             <xsl:when test="string(.) or count(./*) > 0">
                 <xsl:variable name="parentStyleName"
                               select="/office:document/office:automatic-styles/
-                              style:style[@style:name=(current()/@text:style-name)]/
-                @style:parent-style-name"/>
+                              style:style[@style:name=(current()/@text:style-name)]/@style:parent-style-name"
+                />
                 <xsl:variable name="parentStyleNameOfPreceding"
                               select="/office:document/office:automatic-styles/
                               style:style[@style:name=current()/
-                              preceding-sibling::*[1]/@text:style-name]/
-                @style:parent-style-name"/>
+                              preceding-sibling::*[1]/@text:style-name]/@style:parent-style-name"
+                />
                 <xsl:variable name="parentStyleNameOfFollowing"
                               select="/office:document/office:automatic-styles/
                               style:style[@style:name=current()/
-                              following-sibling::*[1]/@text:style-name]/
-                @style:parent-style-name"/>
+                              following-sibling::*[1]/@text:style-name]/@style:parent-style-name"
+                />
                 <xsl:choose>
                     
                     <!-- AUTHOR ELEMENT -->
@@ -1085,6 +1086,15 @@
                         <q><xsl:apply-templates/></q>
                     </xsl:when>
                     -->
+
+                    <!-- EXCLUDE TABLE CAPTIONS -->
+                    <xsl:when test="(name(current()/preceding-sibling::*[1]) = 'table:table' and child::text:sequence/@text:ref-name)">
+                        <xsl:if test="$DEBUG"><xsl:comment>Captions (bottom) are not handled by the para template, because they would end up outside the table!</xsl:comment></xsl:if>
+                    </xsl:when>
+                    <xsl:when test="(name(current()/following-sibling::*[1]) = 'table:table' and child::text:sequence/@text:ref-name)">
+                        <xsl:if test="$DEBUG"><xsl:comment>Captions (top) are not handled by the para template, because they would end up outside the table!</xsl:comment></xsl:if>
+                    </xsl:when>
+                    
                     <xsl:otherwise>
                         
                         <!-- P ELEMENT -->
@@ -1098,12 +1108,13 @@
                 <xsl:call-template name="postParaProcess" />
             </xsl:when>
             
-            <!-- Empty Para -->
+            <!-- Empty Paragraph -->
             <xsl:otherwise>
                 <p/>
             </xsl:otherwise>
         </xsl:choose>
     </xsl:template>
+
     <xsl:template match="text:note">
         <xsl:element name="noteref">
             <xsl:attribute name="idref">
@@ -1286,26 +1297,43 @@
     -->
     <xsl:template match="table:table" name="table">
         
-        <!-- get Parant Style Name of first para cell -->
+        <!-- Get parent style name of first data cell.
+          Don't assume that each cell below the header row has text:p/@text:style-name="Table_20_Contents"
+          and never text:p/@text:style-name="Table_20_Heading",
+          i.e. don't assume that table rows never have row headings! See bug 3171439
+        -->
         <xsl:variable name="parentStyleNameFirstCell"
                       select="/office:document/office:automatic-styles/
                       style:style[
-                      @style:name=(current()/table:table-row[1]/table:table-cell/text:p/@text:style-name)
+                      @style:name=(current()/table:table-row[1]/table:table-cell[2]/text:p/@text:style-name)
         ]/@style:parent-style-name"/>
         <xsl:variable name="styleNameFirstCell"
-                      select="current()/table:table-row[1]/table:table-cell/text:p/@text:style-name"/>
+                      select="current()/table:table-row[1]/table:table-cell[2]/text:p/@text:style-name"/>
         
         <!-- TABLE ELEMENT -->
         <table>
+            <!-- In DAISY, table captions are always at the top! -->
+            <!-- Captions should not be handled by template name="para"!-->
             <xsl:choose>
-                
-                <!-- if table have headings -->
+                <xsl:when test="preceding-sibling::text:p[1]/text:sequence[@text:ref-name]">
+                    <caption><xsl:value-of select="preceding-sibling::text:p[1]"/></caption>
+                </xsl:when>
+                <xsl:when test="following-sibling::text:p[1]/text:sequence[@text:ref-name]">
+                    <caption><xsl:value-of select="following-sibling::text:p[1]"/></caption>
+                </xsl:when>
+                <xsl:otherwise><xsl:if test="$DEBUG"><xsl:comment>@No caption above or below table</xsl:comment></xsl:if></xsl:otherwise>
+            </xsl:choose>
+
+            <xsl:choose>
+            
+                <!-- if table has headings -->
                 <xsl:when test="$parentStyleNameFirstCell = 'Table_20_Heading' or $styleNameFirstCell = 'Table_20_Heading'">
                     
                     <!-- THEAD ELEMENT -->
                     <thead>
                         <xsl:apply-templates select="current()/table:table-row[ position() = 1 ]">
                             <xsl:with-param name="heading" select="true()" />
+                            <xsl:if test="$DEBUG"><xsl:comment>no table:table-header-rows: bug 3171439</xsl:comment></xsl:if>
                         </xsl:apply-templates>
                     </thead>
                     
@@ -1315,13 +1343,14 @@
                     </tbody>
                 </xsl:when>
 
-                <!-- if table have headings (with table:table-header-rows) -->
+                <!-- if table has headings (with table:table-header-rows) -->
                 <xsl:when test="current()/table:table-header-rows">
 
                     <!-- THEAD ELEMENT -->
                     <thead>
                         <xsl:apply-templates select="current()/table:table-header-rows/table:table-row">
                             <xsl:with-param name="heading" select="true()" />
+                            <xsl:if test="$DEBUG"><xsl:comment>with table:table-header-rows</xsl:comment></xsl:if>
                         </xsl:apply-templates>
                     </thead>
 
@@ -1350,13 +1379,15 @@
             </xsl:apply-templates>
         </tr>
     </xsl:template>
+
+    <!-- TH & TD ELEMENTS -->
     <xsl:template match="table:table-cell" name="table-cell">
         <xsl:param name="heading" select="false()" />
         <xsl:choose>
-            
             <!-- TH ELEMENT -->
-            <!-- if it is an heading table -->
-            <xsl:when test="$heading">
+            <!-- if it is a heading table -->
+            <!--@todo refine this simplistic test for heading cells?-->
+            <xsl:when test="text:p[@text:style-name = 'Table_20_Heading']">
                 <th>
                     <xsl:apply-templates />
                 </th>
@@ -1364,7 +1395,6 @@
             
             <!-- if it a normal cell -->
             <xsl:otherwise>
-                
                 <!-- TD ELEMENT -->
                 <xsl:element name="td">
                     <xsl:if test="@table:number-columns-spanned">
@@ -1480,7 +1510,7 @@
     
     <!--
      ============
-     INLINES TAGS
+     INLINE TAGS
      ============
   -->
     <xsl:template match="text:p">
@@ -1489,31 +1519,32 @@
             <xsl:with-param name="source" select="$source"/>
         </xsl:call-template>
     </xsl:template>
+
     <xsl:template match="text:span">
         <xsl:if test="string(.) or count(./*) > 0">
             <xsl:variable name="fontStyle"
                       select="/office:document/office:automatic-styles/
-                      style:style[@style:name=(current()/@text:style-name)]
-        /style:text-properties/@fo:font-style"/>
+                      style:style[@style:name=(current()/@text:style-name)]/style:text-properties/@fo:font-style"
+            />
             <xsl:variable name="fontWeight"
                       select="/office:document/office:automatic-styles/
                       style:style[@style:name=(current()/
-                      @text:style-name)]/style:text-properties/
-        @fo:font-weight"/>
+                      @text:style-name)]/style:text-properties/@fo:font-weight"
+            />
             <xsl:variable name="fontName"
                       select="/office:document/office:automatic-styles/
                       style:style[@style:name=(current()/
-                      @text:style-name)]/style:properties/
-        @style:font-name"/>
+                      @text:style-name)]/style:properties/@style:font-name"
+            />
             <xsl:variable name="textPosition"
                       select="/office:document/office:automatic-styles/
                       style:style[@style:name=(current()/
-                      @text:style-name)]/style:text-properties/
-        @style:text-position"/>
+                      @text:style-name)]/style:text-properties/@style:text-position"
+            />
             <xsl:variable name="parentStyleName"
                       select="/office:document/office:styles/
-                      style:style[@style:name=(current()/
-        @text:style-name)]/@style:parent-style-name"/>
+                      style:style[@style:name=(current()/@text:style-name)]/@style:parent-style-name"
+            />
         
         <!-- With this template, we matches derived of derived (of derived ...) of Citation Styles -->
         <!--<xsl:variable name="isCitation">
@@ -1995,6 +2026,7 @@
             </xsl:otherwise>
         </xsl:choose>
     </xsl:template>
+
     <xsl:template name="addLangAttrPara">
         <xsl:variable name="language"
                       select="//style:style[@style:name=(current()/@text:style-name)]/
@@ -2010,6 +2042,7 @@
             </xsl:attribute>
         </xsl:if>
     </xsl:template>
+
     <xsl:template name="addLangAttrSpan">
         <xsl:variable name="language"
                       select="//style:style[@style:name=(current()/@text:style-name)]
@@ -2025,6 +2058,7 @@
             </xsl:attribute>
         </xsl:if>
     </xsl:template>
+
     <xsl:template name="formatDate">
         <xsl:param name="date" />
         <!-- expected format like: 2008-06-27T04:31:05 -->
@@ -2098,5 +2132,3 @@
         <xsl:value-of select="$ss" />
     </xsl:template>
 </xsl:stylesheet>
-
-
