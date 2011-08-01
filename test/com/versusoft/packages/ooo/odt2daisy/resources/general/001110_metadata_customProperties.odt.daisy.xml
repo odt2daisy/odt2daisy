@@ -22,9 +22,9 @@
       <meta name="dc:Publisher" content="DAISY Publising House"/>
       <meta name="dc:Source" content="isbn:978-0-19-280444-6"/>
       <meta name="dtb:sourceTitle" content="Extended Metadata Test File"/>
-      <meta name="dtb:sourcepublisher" content="The Gutenberg Publishing Centre"/>
-      <meta name="dtb:sourceedition" content="First edition, hardback"/>
-      <meta name="dtb:sourcedate" content="2011-06-22"/>
+      <meta name="dtb:sourcePublisher" content="The Gutenberg Publishing Centre"/>
+      <meta name="dtb:sourceEdition" content="First edition, hardback"/>
+      <meta name="dtb:sourceDate" content="2011-06-22"/>
       <meta name="dtb:narrator" content="Jacques Brel"/>
       <meta name="dtb:producer" content="The DAISY Production Centre"/>
       <meta name="dc:Date" content="2011-06-22"/>
