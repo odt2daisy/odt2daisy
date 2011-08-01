@@ -306,15 +306,15 @@
                           content="{/office:document/office:meta/dc:title/text()}"/>
                 </xsl:if>
                 <xsl:if test="/office:document/office:meta/meta:user-defined[@meta:name='dtb:sourcepublisher']">
-                    <meta name="dtb:sourcepublisher"
+                    <meta name="dtb:sourcePublisher"
                           content="{/office:document/office:meta/meta:user-defined[@meta:name='dtb:sourcepublisher']/text()}" />
                 </xsl:if>
                 <xsl:if test="/office:document/office:meta/meta:user-defined[@meta:name='dtb:sourceedition']">
-                    <meta name="dtb:sourceedition"
+                    <meta name="dtb:sourceEdition"
                           content="{/office:document/office:meta/meta:user-defined[@meta:name='dtb:sourceedition']/text()}" />
                 </xsl:if>
                 <xsl:if test="/office:document/office:meta/meta:user-defined[@meta:name='dtb:sourcedate']">
-                    <meta name="dtb:sourcedate"
+                    <meta name="dtb:sourceDate"
                           content="{/office:document/office:meta/meta:user-defined[@meta:name='dtb:sourcedate']/text()}" />
                 </xsl:if>
                 <xsl:if test="/office:document/office:meta/meta:user-defined[@meta:name='dtb:narrator']">
@@ -895,6 +895,7 @@
             </xsl:when>
         </xsl:choose>
     </xsl:template>
+
     <xsl:template name="postParaProcess">
         <!-- ELEMENT SIDEBAR -->
         <!-- if it's a frame -->
@@ -1025,6 +1026,9 @@
             
             <!-- Non-Empty Para -->
             <xsl:when test="string(.) or count(./*) > 0">
+                <xsl:variable name="fontStyleName"
+                              select="/office:document/office:automatic-styles/style:style[@style:name=(current()/@text:style-name)]/style:text-properties/@fo:font-style"
+                /><!--@todo check how much this slows down conversion -->
                 <xsl:variable name="parentStyleName"
                               select="/office:document/office:automatic-styles/
                               style:style[@style:name=(current()/@text:style-name)]/@style:parent-style-name"
@@ -1040,7 +1044,26 @@
                               following-sibling::*[1]/@text:style-name]/@style:parent-style-name"
                 />
                 <xsl:choose>
-                    
+
+                    <!-- @todo para em/italic text -->
+                    <xsl:when test="$fontStyleName = 'italic'">
+                        <p><em>
+                            <xsl:call-template name="addLangAttrPara" />
+                            <xsl:apply-templates/>
+                        </em></p>
+                    </xsl:when>
+
+                    <!--@todo add Poem support
+                      See http://sourceforge.net/tracker/?func=detail&aid=2879922&group_id=272398&atid=1158054
+                      and http://www.daisy.org/z3986/structure/SG-DAISY3/part2-poem.html
+                    -->
+                    <!--xsl:when test="$parentStyleName= 'Versregel'">
+                        <Poem><line>
+                            <xsl:call-template name="addLangAttrPara" />
+                            <xsl:apply-templates/>
+                        </line></Poem>
+                    </xsl:when-->
+
                     <!-- AUTHOR ELEMENT -->
                     <xsl:when test="@text:style-name='_5b_DAISY_5d__20_Author' or $parentStyleName='_5b_DAISY_5d__20_Author'">
                         <author>
@@ -1108,9 +1131,11 @@
                 <xsl:call-template name="postParaProcess" />
             </xsl:when>
             
-            <!-- Empty Paragraph -->
+            <!-- Empty Paragraph; 
+              this case never applies if empty paragraphs are removed by OdtUtils.java
+            -->
             <xsl:otherwise>
-                <p/>
+                <p>&#160;</p><!--@@This case never applies??-->
             </xsl:otherwise>
         </xsl:choose>
     </xsl:template>
@@ -1696,13 +1721,13 @@
                     </sup>
                 </xsl:when>
                 <xsl:when test="$fontWeight='bold'">
-                    <strong>
+                    <strong><!--@todo bold does not always mean strong emphasis!-->
                         <xsl:call-template name="addLangAttrSpan" />
                         <xsl:apply-templates/>
                     </strong>
                 </xsl:when>
                 <xsl:when test="$fontStyle='italic'">
-                    <em>
+                    <em><!--@todo italics do not always mean emphasis, but DAISY has no <i> element!-->
                         <xsl:call-template name="addLangAttrSpan" />
                         <xsl:apply-templates/>
                     </em>
