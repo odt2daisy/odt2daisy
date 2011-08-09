@@ -502,6 +502,12 @@ public class Odt2Daisy {
 
     }
 
+    /**
+     * Get the number of level 1 headings (style 'Heading 1') in the ODF file.
+     * @return The number of text:h elements where the attribute text:outline-level='1'.
+     * @throws MalformedURLException If the path to the ODF file cannot be parsed as a URL.
+     * @throws IOException If the ODF file causes an I/O exception.
+     */
     private double getODTHeadingsCount() throws MalformedURLException, IOException {
         return XPathUtils.evaluateNumber(
                 tmpFlatFile.toURL().openStream(),
@@ -512,8 +518,8 @@ public class Odt2Daisy {
     /**
      * Get the creator of the source document.
      * @return The custom property "dc:creator", if available; else the standard "dc:creator" element.
-     * @throws MalformedURLException
-     * @throws IOException
+     * @throws MalformedURLException If the path to the ODF file cannot be parsed as a URL.
+     * @throws IOException If the ODF file causes an I/O exception.
      */
     private String getODTCreatorMeta() throws MalformedURLException, IOException {
         String creator = "";
@@ -532,8 +538,8 @@ public class Odt2Daisy {
      * Get the document title from the document properties (dc:title).
      *   If the title property is empty, the first Title style is used as a fallback.
      * @return Document title, as String
-     * @throws MalformedURLException
-     * @throws IOException
+     * @throws MalformedURLException If the path to the ODF file cannot be parsed as a URL.
+     * @throws IOException If the ODF file causes an I/O exception.
      */
     private String getODTTitleMeta() throws MalformedURLException, IOException {
         String title = "";
@@ -556,8 +562,8 @@ public class Odt2Daisy {
      * if the default language is really an Asian language, this language is correctly identified in ODF, and "Western language", if not used in the document, is set to "None" / zxx, or
      * if the default language is really a CTL language, this language is correctly identified in ODF, and "Western language" and "Asian language", if not used in the document, are set to "None" / zxx).
      * @return An ISO 639 string in the format xx-YY, representing the language (xx) and variant or country (YY), e.g. en-US, nl-BE, fr-FR, unless the language is not linked to any country (e.g. Esperanto is represented as "eo" instead of "eo-none").
-     * @throws MalformedURLException
-     * @throws IOException
+     * @throws MalformedURLException If the path to the ODF file cannot be parsed as a URL.
+     * @throws IOException If the ODF file causes an I/O exception.
      */
     private String getODTLanguage() throws MalformedURLException, IOException {
         String language = "";
@@ -605,8 +611,8 @@ public class Odt2Daisy {
     /**
      * Get the publisher of the source document (dtb:sourcepublisher in the DAISY standard) from the ODF custom properties.
      * @return The publisher of the source document, as String.
-     * @throws MalformedURLException
-     * @throws IOException
+     * @throws MalformedURLException If the path to the ODF file cannot be parsed as a URL.
+     * @throws IOException If the ODF file causes an I/O exception.
      */
     private String getODTSourcePublisher() throws MalformedURLException, IOException {
         String srcPublisher = "";
@@ -620,8 +626,8 @@ public class Odt2Daisy {
     /**
      * Get the producer of the DAISY book (dtb:producer in DAISY the DAISY standard) from the ODF custom properties.
      * @return The producer of the DAISY book, as String
-     * @throws MalformedURLException
-     * @throws IOException
+     * @throws MalformedURLException If the path to the ODF file cannot be parsed as a URL.
+     * @throws IOException If the ODF file causes an I/O exception.
      */
     private String getDAISYProducer() throws MalformedURLException, IOException {
         String producer = "";
@@ -635,8 +641,8 @@ public class Odt2Daisy {
     /**
      * Get the publisher of the DAISY book (dc:publisher in the DAISY standard) from the ODF custom properties.
      * @return The publisher of the DAISY book, as String
-     * @throws MalformedURLException
-     * @throws IOException
+     * @throws MalformedURLException If the path to the ODF file cannot be parsed as a URL.
+     * @throws IOException If the ODF file causes an I/O exception.
      */
     private String getDAISYPublisher() throws MalformedURLException, IOException {
         String publisher = "";
@@ -648,6 +654,12 @@ public class Odt2Daisy {
     }
 
 
+    /**
+     * Check whether the document contains content.
+     * @return Whether the document is empty.
+     * @throws MalformedURLException If the path to the ODF file cannot be parsed as a URL.
+     * @throws IOException If the ODF file causes an I/O exception.
+     */
     public boolean isEmptyDocument() throws MalformedURLException, IOException {
         return XPathUtils.evaluateBoolean(tmpFlatFile.toURL().openStream(),
                 "count(//office:text/*)=1",
