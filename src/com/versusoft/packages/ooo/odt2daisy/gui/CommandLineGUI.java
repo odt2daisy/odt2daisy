@@ -125,7 +125,7 @@ public class CommandLineGUI {
 
         try {
 
-            Odt2Daisy odt2daisy = new Odt2Daisy(cmd.getOptionValue("in"));
+            Odt2Daisy odt2daisy = new Odt2Daisy(cmd.getOptionValue("in")); //@todo add initial output directory URL?
             odt2daisy.init();
 
             if (odt2daisy.isEmptyDocument()) {

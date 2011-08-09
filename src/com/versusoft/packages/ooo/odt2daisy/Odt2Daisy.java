@@ -177,8 +177,8 @@ public class Odt2Daisy {
 
         String baseDir = parent + System.getProperty("file.separator");
 
-        OdtUtils.extractAndNormalizedEmbedPictures(tmpFlatFile.getAbsolutePath(), odtFile, baseDir, imageDir);
-        //@todo check images types (file name extensions) after modifying OdtUtils.extractAndNormalizedEmbedPictures to return an array of image names?
+        OdtUtils.extractAndNormalizeEmbedPictures(tmpFlatFile.getAbsolutePath(), odtFile, baseDir, imageDir);
+        //@todo check image types (file name extensions) after modifying OdtUtils.extractAndNormalizeEmbedPictures to return an array of image names?
 
         logger.fine("done");
 
