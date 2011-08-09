@@ -255,7 +255,7 @@ public class Odt2Daisy {
         } else {
             transformer.setParameter(
                     "paramSourcePublisher",
-                    ResourceBundle.getBundle("com/versusoft/packages/ooo/odt2daisy/xslt/l10n/Bundle", ODTlocale).getString("Undefined_Publisher")); //@todo add Undefined_sourcePublisher to L10N
+                    ResourceBundle.getBundle("com/versusoft/packages/ooo/odt2daisy/xslt/l10n/Bundle", ODTlocale).getString("Undefined_Publisher"));
         }
 
         transformer.setParameter(
@@ -314,6 +314,7 @@ public class Odt2Daisy {
     public void correctionProcessing() {
         try {
 
+            // @todo add option to remove/preserve empty paragraphs.
             OdtUtils.correctionProcessing(tmpFlatFile.getAbsolutePath());
 
         } catch (ParserConfigurationException ex) {
@@ -550,18 +551,56 @@ public class Odt2Daisy {
 
     /**
      * Get the default language from the ODF document.
-     * @return An ISO 639 string in the format xx-YY, representing the language and variant/country (e.g. en-US, nl-BE, fr-FR).
+     * This function can only reliably return the document language
+     * if the default language is really a Western language and this language is correctly identified in ODF (ideally others are set to "None" / zxx), or
+     * if the default language is really an Asian language, this language is correctly identified in ODF, and "Western language", if not used in the document, is set to "None" / zxx, or
+     * if the default language is really a CTL language, this language is correctly identified in ODF, and "Western language" and "Asian language", if not used in the document, are set to "None" / zxx).
+     * @return An ISO 639 string in the format xx-YY, representing the language (xx) and variant or country (YY), e.g. en-US, nl-BE, fr-FR, unless the language is not linked to any country (e.g. Esperanto is represented as "eo" instead of "eo-none").
      * @throws MalformedURLException
      * @throws IOException
      */
     private String getODTLanguage() throws MalformedURLException, IOException {
-        return XPathUtils.evaluateString(tmpFlatFile.toURL().openStream(),
+        String language = "";
+        String country = "";
+        StringBuffer iso639 = new StringBuffer("en-US");
+
+        language = XPathUtils.evaluateString(tmpFlatFile.toURL().openStream(),
                 "/office:document/office:styles/style:default-style/style:text-properties/@fo:language",
-                Configuration.namespace) + "-" +
-                XPathUtils.evaluateString(tmpFlatFile.toURL().openStream(),
+                Configuration.namespace);
+        country = XPathUtils.evaluateString(tmpFlatFile.toURL().openStream(),
                 "/office:document/office:styles/style:default-style/style:text-properties/@fo:country",
                 Configuration.namespace).toUpperCase();
+        if (language.equals("zxx") || language.equals("")) {
+            language = XPathUtils.evaluateString(tmpFlatFile.toURL().openStream(),
+                "/office:document/office:styles/style:default-style/style:text-properties/@style:language-asian",
+                Configuration.namespace);
+            country = XPathUtils.evaluateString(tmpFlatFile.toURL().openStream(),
+                "/office:document/office:styles/style:default-style/style:text-properties/@style:country-asian",
+                Configuration.namespace).toUpperCase();
+            if (language.equals("zxx") || language.equals("")) {
+                language = XPathUtils.evaluateString(tmpFlatFile.toURL().openStream(),
+                    "/office:document/office:styles/style:default-style/style:text-properties/@style:language-complex",
+                    Configuration.namespace);
+                country = XPathUtils.evaluateString(tmpFlatFile.toURL().openStream(),
+                    "/office:document/office:styles/style:default-style/style:text-properties/@style:country-complex",
+                    Configuration.namespace).toUpperCase();
+            }
+        }
+
+        if ( language == null | language.equals("")) {
+            iso639 = new StringBuffer("zxx");
+        } else {
+            iso639 = new StringBuffer(language);
+            // country = "none" is useless to TTS, so "none" is thrown away;
+            // e.g. for Esperanto, ODF will contain the attributes fo:language="eo" fo:country="none"
+            if (!country.equalsIgnoreCase("none")) {
+                iso639.append("-").append(country);
+            }
+        }
+
+        return iso639.toString();
     }
+
 
     /**
      * Get the publisher of the source document (dtb:sourcepublisher in the DAISY standard) from the ODF custom properties.
