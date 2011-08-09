@@ -503,7 +503,7 @@ public class Odt2Daisy {
     }
 
     /**
-     * Get the number of level 1 headings (style 'Heading 1') in the ODF file.
+     * Get the number of level 1 headings (style 'Heading 1') in the merged XML content of the ODF file.
      * @return The number of text:h elements where the attribute text:outline-level='1'.
      * @throws MalformedURLException If the path to the ODF file cannot be parsed as a URL.
      * @throws IOException If the ODF file causes an I/O exception.
@@ -511,7 +511,9 @@ public class Odt2Daisy {
     private double getODTHeadingsCount() throws MalformedURLException, IOException {
         return XPathUtils.evaluateNumber(
                 tmpFlatFile.toURL().openStream(),
-                "count(//text:h[@text:outline-level='1'])",
+                // This XPath is evaluated on the merged XML content, not on
+                // content.xml (where the root element is /office:document-content)
+                "count(/office:document/office:body//text:h[@text:outline-level='1'])",
                 Configuration.namespace);
     }
 
@@ -662,7 +664,7 @@ public class Odt2Daisy {
      */
     public boolean isEmptyDocument() throws MalformedURLException, IOException {
         return XPathUtils.evaluateBoolean(tmpFlatFile.toURL().openStream(),
-                "count(//office:text/*)=1",
+                "count(/office:document/office:body/office:text/*)=1",
                 Configuration.namespace);
     }
 
