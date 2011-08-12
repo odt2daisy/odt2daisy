@@ -1,7 +1,7 @@
 /**
  *  odt2daisy - OpenDocument to DAISY XML/Audio
  *
- *  (c) Copyright 2008 - 2009 by Vincent Spiewak, All Rights Reserved.
+ *  (c) Copyright 2008 - 2011 by Vincent Spiewak, All Rights Reserved.
  *
  *  This program is free software; you can redistribute it and/or modify
  *  it under the terms of the GNU General Lesser Public License as published by
@@ -38,6 +38,9 @@ public class Configuration {
             if ("dc".equals(prefix)) {
                 return "http://purl.org/dc/elements/1.1/";
 
+            } else if ("xlink".equals(prefix)) {
+                return "http://www.w3.org/1999/xlink";
+
             } else if ("office".equals(prefix)) {
                 return "urn:oasis:names:tc:opendocument:xmlns:office:1.0";
 
@@ -67,6 +70,9 @@ public class Configuration {
         public String getPrefix(String namespaceURI) {
             if ("http://purl.org/dc/elements/1.1/".equals(namespaceURI)) {
                 return "dc";
+
+            } else if ("http://www.w3.org/1999/xlink".equals(namespaceURI)) {
+                return "xlink";
 
             } else if ("urn:oasis:names:tc:opendocument:xmlns:office:1.0".equals(namespaceURI)) {
                 return "office";
