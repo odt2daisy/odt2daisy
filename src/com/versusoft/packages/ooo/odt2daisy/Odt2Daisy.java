@@ -28,6 +28,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.MalformedURLException;
+import java.util.LinkedHashMap;
 import java.util.Locale;
 import java.util.ResourceBundle;
 import java.util.UUID;
@@ -62,6 +63,9 @@ public class Odt2Daisy {
     private File tmpFlatFile;
     private MySAXErrorHandler errorHandler;
     private boolean useHeadings;
+    private LinkedHashMap<String,String> oldAndNewImgNames;
+    private LinkedHashMap<String, String> incompatibleImages;
+    private boolean containsIncompatibleImages;
     private String creatorMeta;
     private String titleMeta;
     private String sourcePublisher;
@@ -69,6 +73,7 @@ public class Odt2Daisy {
     private String dtbProducer;
     private String languageDoc;
     private static final Logger logger = Logger.getLogger("com.versusoft.packages.ooo.odt2daisy");
+    private static final String SLASH = System.getProperty("file.separator");
 
     /**
      * Odt2Daisy - convert ODT to DAISY XML
@@ -78,7 +83,7 @@ public class Odt2Daisy {
     public Odt2Daisy(String odtFile) {
         this.odtFile = odtFile;
     }
-    //@@todo add constructor that uses initial output directory as second parameter?
+    //@todo add constructor that uses initial output directory as second parameter?
 
     /**
      * init - must be call first
@@ -140,27 +145,19 @@ public class Odt2Daisy {
     }
 
     /**
-     * Run images processing (extract and normalize embedded pictures) 
-     * @param dtbookFile
-     * @param imageDir
-     * @throws org.xml.sax.SAXException
-     * @throws org.xml.sax.SAXException
-     * @throws java.io.IOException
-     * @throws java.io.IOException
-     * @throws javax.xml.parsers.ParserConfigurationException
-     * @throws javax.xml.parsers.ParserConfigurationException
-     * @throws javax.xml.transform.TransformerConfigurationException
-     * @throws javax.xml.transform.TransformerConfigurationException
-     * @throws javax.xml.transform.TransformerException
+     * Run image processing (extract embedded pictures and normalize their names).
+     * @param dtbookFile Path where the DAISY book should be saved.
+     * @param imageDir Directory where images should be saved.
+     * @throws org.xml.sax.SAXException If an input source for the XML content cannot be created.
+     * @throws java.io.IOException If the String representing the image directory is actually a file instead of a directory, or if an input source for the XML content cannot be created.
+     * @throws javax.xml.parsers.ParserConfigurationException If a DocumentBuilder cannot be created which satisfies the configuration requested, i.e. a validating parser cannot be created.
+     * @throws javax.xml.transform.TransformerConfigurationException If a a serious configuration error occured.
+     * @throws javax.xml.transform.TransformerException If an exceptional condition occured during the transformation process.
      */
     private void imagesProcessing(String dtbookFile, String imageDir)
             throws SAXException,
-            SAXException,
-            IOException,
             IOException,
             ParserConfigurationException,
-            ParserConfigurationException,
-            TransformerConfigurationException,
             TransformerConfigurationException,
             TransformerException {
 
@@ -175,10 +172,13 @@ public class Odt2Daisy {
             imageDir += "/";
         }
 
-        String baseDir = parent + System.getProperty("file.separator");
+        String baseDir = parent + SLASH;
 
-        OdtUtils.extractAndNormalizeEmbedPictures(tmpFlatFile.getAbsolutePath(), odtFile, baseDir, imageDir);
-        //@todo check image types (file name extensions) after modifying OdtUtils.extractAndNormalizeEmbedPictures to return an array of image names?
+        // Get mapping of image names, then chech which ones are incompatible with DAISY:
+        oldAndNewImgNames = OdtUtils.extractAndNormalizeEmbedPictures(tmpFlatFile.getAbsolutePath(), odtFile, baseDir, imageDir);
+        logger.fine("oldAndNewImgNames = " + oldAndNewImgNames.toString());
+        incompatibleImages = obtainIncompatibleImages();
+        containsIncompatibleImages = containsIncompatibleImages();
 
         logger.fine("done");
 
@@ -374,7 +374,7 @@ public class Odt2Daisy {
             if (parent == null) {
                 parent = ".";
             }
-            String cssfilename = parent + System.getProperty("file.separator") + Configuration.CSS_FILENAME;
+            String cssfilename = parent + SLASH + Configuration.CSS_FILENAME;
 
             logger.info("write CSS file (" + cssfilename + ")");
             writeCSS(cssfilename);
@@ -515,6 +515,54 @@ public class Odt2Daisy {
                 // content.xml (where the root element is /office:document-content)
                 "count(/office:document/office:body//text:h[@text:outline-level='1'])",
                 Configuration.namespace);
+    }
+
+    /**
+     * Return a list of images that are not supported by DAISY 3.0 (i.e. images that are not PNG or JPG/JPEG).
+     *
+     * @throws MalformedURLException If the path to the ODF file cannot be parsed as a URL.
+     * @throws IOException If the ODF file causes an I/O exception.
+     * @return A LinkedHashMap where <code>draw:name</code> is the key and the file name is the value.
+     */
+    private LinkedHashMap<String, String> obtainIncompatibleImages() throws MalformedURLException, IOException {
+        LinkedHashMap<String, String> incompatImg = new LinkedHashMap<String, String>();
+        String xpathStart = "/office:document/office:body//draw:frame[substring-after(draw:image/@xlink:href, '/') = '";
+        String xpathEnd = "']/@draw:name";
+
+        // For each {old name = new name} pair, check the extension;
+        // if the file type is incompatible, add its draw:name and old name to the incompatible list:
+        // Iteration code inspired by http://www.sergiy.ca/how-to-iterate-over-a-map-in-java/
+        for (java.util.Map.Entry<String,String> entry: oldAndNewImgNames.entrySet()) {
+            String newName = entry.getValue();
+            StringBuffer xpath = new StringBuffer(xpathStart);
+            int lastSlashPos = newName.lastIndexOf("/");
+            xpath.append( newName.substring( lastSlashPos + 1 ) ).append(xpathEnd);
+            String imgName = XPathUtils.evaluateString(tmpFlatFile.toURL().openStream(),
+                xpath.toString(),
+                Configuration.namespace);
+            logger.fine("XPath for draw:frame/@draw:name = " + xpath.toString());
+            if( imgName != null &&
+                 !(imgName.toLowerCase().endsWith("png") ||
+                  imgName.toLowerCase().endsWith("jpg") ||
+                  imgName.toLowerCase().endsWith("jpeg")) ) {
+                incompatImg.put(imgName, entry.getKey());
+            }
+        }
+        //if(incompatImg != null)
+        //    logger.fine("Incompatible images: " + incompatImg.toString());
+        return incompatImg;
+    }
+
+    /**
+     * Returns true if the ODF file contains images that are not PNG or JPG/JPEG.
+     * @return true if the ODF file contains images that are not PNG or JPG/JPEG; false otherwise.
+     */
+    public boolean containsIncompatibleImages() {
+        return ( incompatibleImages.size() > 0 );
+    }
+
+    public LinkedHashMap<String, String> getIncompatibleImages() {
+        return incompatibleImages;
     }
 
     /**
