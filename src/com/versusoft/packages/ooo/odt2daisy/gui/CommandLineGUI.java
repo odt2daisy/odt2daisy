@@ -1,7 +1,7 @@
 /**
  *  odt2daisy - OpenDocument to DAISY XML/Audio
  *
- *  (c) Copyright 2008 - 2009 by Vincent Spiewak, All Rights Reserved.
+ *  (c) Copyright 2008 - 2011 by Vincent Spiewak, All Rights Reserved.
  *
  *  This program is free software; you can redistribute it and/or modify
  *  it under the terms of the GNU General Lesser Public License as published by
@@ -129,7 +129,7 @@ public class CommandLineGUI {
             odt2daisy.init();
 
             if (odt2daisy.isEmptyDocument()) {
-                logger.info("Can't convert empty documents. Export Aborded...");
+                logger.info("Cannot convert empty documents. Export Aborted...");
                 System.exit(1);
             }
 
@@ -139,8 +139,9 @@ public class CommandLineGUI {
             //System.out.println("- creator: " + odt2daisy.getCreatorMeta());
 
             if (!odt2daisy.isUsingHeadings()) {
-                logger.info("You SHOULD use Headings Styles in your document. Export in a unique level");
+                logger.info("You SHOULD use Heading styles in your document. Export in a single level.");
             }
+            //@todo Warning for incompatible image formats should go here. See UnoGui.java.
 
             if (cmd.hasOption("u")) {
                 //System.out.println("arg uid:"+cmd.getOptionValue("u"));
