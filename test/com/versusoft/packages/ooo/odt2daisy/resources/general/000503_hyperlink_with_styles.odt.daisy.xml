@@ -35,7 +35,7 @@
       <bodymatter>
          <level1>
             <h1>Simple Hyperlink</h1>
-            <p>Before <a href="http://odt2dtbook.sf.net/" external="true">http://odt2dtbook.sf.net/</a> after...</p>
+            <p>Before <a href="http://odt2dtbook.sf.net/" external="true"><strong>http://odt2dtbook.sf.net/</strong></a> after...</p>
          </level1>
       </bodymatter>
    </book>
