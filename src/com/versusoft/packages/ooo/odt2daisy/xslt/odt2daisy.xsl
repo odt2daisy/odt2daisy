@@ -1571,7 +1571,7 @@
                       style:style[@style:name=(current()/@text:style-name)]/@style:parent-style-name"
             />
         
-        <!-- With this template, we matches derived of derived (of derived ...) of Citation Styles -->
+        <!-- With this template, we match derived of derived (of derived ...) of Citation Styles -->
         <!--<xsl:variable name="isCitation">
             <xsl:call-template name="hasParentStyle">
                 <xsl:with-param name="style-name" select="@text:style-name" />
@@ -1754,7 +1754,7 @@
     <!-- 
      HYPERLINK, EMAIL
      ================
--->
+    -->
     <xsl:template match="text:a">
         <!-- is it http or mailto -->
         <xsl:variable name="protocol"
@@ -1764,7 +1764,12 @@
                 <a href="{@xlink:href}" external="true">
                     <xsl:choose>
                         <xsl:when test="string(.) or count(./*) > 0">
-                            <xsl:value-of select="." />
+                            <!--
+                            <xsl:value-of select="." /> => language change on hyperlink is ignored.
+                              <xsl:apply-templates />   => causes pause after link in AMIS
+                            -->
+                            <!-- @todo test & check language attributes on spans in hyperlinks -->
+                            <xsl:apply-templates />
                         </xsl:when>
                         <xsl:otherwise>
                             <xsl:value-of select="@xlink:href" />
@@ -1776,7 +1781,7 @@
                 <a href="{@xlink:href}" external="true">
                     <xsl:choose>
                         <xsl:when test="string(.) or count(./*) > 0">
-                            <xsl:value-of select="." />
+                            <xsl:apply-templates />
                         </xsl:when>
                         <xsl:otherwise>
                             <xsl:value-of select="@xlink:href" />
@@ -2053,6 +2058,7 @@
     </xsl:template>
 
     <xsl:template name="addLangAttrPara">
+        <!-- @todo add Asian and CTL languages -->
         <xsl:variable name="language"
                       select="//style:style[@style:name=(current()/@text:style-name)]/
         style:text-properties/@fo:language"/>
@@ -2069,6 +2075,7 @@
     </xsl:template>
 
     <xsl:template name="addLangAttrSpan">
+        <!-- @todo add Asian and CTL languages -->
         <xsl:variable name="language"
                       select="//style:style[@style:name=(current()/@text:style-name)]
         /style:text-properties/@fo:language"/>
