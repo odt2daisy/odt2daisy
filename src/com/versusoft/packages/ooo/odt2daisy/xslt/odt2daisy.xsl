@@ -1765,8 +1765,8 @@
                     <xsl:choose>
                         <xsl:when test="string(.) or count(./*) > 0">
                             <!--
-                            <xsl:value-of select="." /> => language change on hyperlink is ignored.
-                              <xsl:apply-templates />   => causes pause after link in AMIS
+                              <xsl:value-of select="." /> => language change on hyperlink is ignored.
+                              <xsl:apply-templates />     => causes pause after link in AMIS
                             -->
                             <!-- @todo test & check language attributes on spans in hyperlinks -->
                             <xsl:apply-templates />
