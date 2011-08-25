@@ -1903,13 +1903,13 @@
                     </xsl:call-template>
                 </xsl:attribute>
             </xsl:element>
-            <!-- If the image has a (long) description, output it below the image.
-              Note that images can appear inside <p>, hence the <span>.
+            <!-- If the image has a (long) description, output it below the image in <prodnote>.
             -->
             <xsl:if test="svg:desc">
-              <xsl:element name="br" />
-              <xsl:element name="span"><!--@todo change to prodnote-->
+              <xsl:element name="prodnote">
                 <xsl:attribute name="class">longdesc</xsl:attribute>
+                <xsl:attribute name="imgref"><xsl:value-of select="../draw:frame/@draw:name" /></xsl:attribute>
+                <xsl:attribute name="render">optional</xsl:attribute>
                 <xsl:value-of select="svg:desc/text()" />
               </xsl:element>
             </xsl:if>
@@ -1953,6 +1953,14 @@
                         </xsl:call-template>
                     </xsl:attribute>
                 </xsl:element>
+                <xsl:if test="draw:text-box/text:p/draw:frame/svg:desc">
+                  <xsl:element name="prodnote">
+                    <xsl:attribute name="class">longdesc</xsl:attribute>
+                    <xsl:attribute name="imgref"><xsl:value-of select="draw:text-box/text:p/draw:frame/@draw:name" /></xsl:attribute>
+                    <xsl:attribute name="render">optional</xsl:attribute>
+                    <xsl:value-of select="draw:text-box/text:p/draw:frame/svg:desc/text()" />
+                  </xsl:element>
+                </xsl:if>
             </imggroup>
         </xsl:if>
     </xsl:template>
