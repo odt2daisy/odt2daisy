@@ -1922,6 +1922,14 @@
                 /style:style[@style:name=(current()/draw:text-box/text:p/draw:frame/@draw:style-name)]
         /@style:parent-style-name='Graphics'">
             <imggroup>
+                <caption>
+                    <xsl:attribute name="imgref">
+                        <xsl:value-of select="draw:text-box/text:p/draw:frame/@draw:name" />
+                    </xsl:attribute>
+                    <xsl:value-of select="draw:text-box/text:p/draw:frame/following-sibling::text()" />
+                    <xsl:value-of select="draw:text-box/text:p/draw:frame/following-sibling::text:sequence/text()" />
+                    <xsl:value-of select="draw:text-box/text:p/draw:frame/following-sibling::text:sequence/following-sibling::text()" />
+                </caption>
                 <xsl:element name="img">
                     <xsl:attribute name="src">
                         <xsl:value-of select="draw:text-box/text:p/draw:frame/draw:image/@xlink:href" />
@@ -1945,14 +1953,6 @@
                         </xsl:call-template>
                     </xsl:attribute>
                 </xsl:element>
-                <caption><!--@todo move before img element-->
-                    <xsl:attribute name="imgref">
-                        <xsl:value-of select="draw:text-box/text:p/draw:frame/@draw:name" />
-                    </xsl:attribute>
-                    <xsl:value-of select="draw:text-box/text:p/draw:frame/following-sibling::text()" />
-                    <xsl:value-of select="draw:text-box/text:p/draw:frame/following-sibling::text:sequence/text()" />
-                    <xsl:value-of select="draw:text-box/text:p/draw:frame/following-sibling::text:sequence/following-sibling::text()" />
-                </caption>
             </imggroup>
         </xsl:if>
     </xsl:template>
