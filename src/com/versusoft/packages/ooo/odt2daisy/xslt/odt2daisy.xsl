@@ -1884,6 +1884,9 @@
                 <xsl:attribute name="src">
                     <xsl:value-of select="draw:image/@xlink:href" />
                 </xsl:attribute>
+                <xsl:attribute name="id">
+                    <xsl:value-of select="../draw:frame/@draw:name" />
+                </xsl:attribute>
                 <xsl:attribute name="alt">
                     <xsl:value-of select="svg:title/text()" />
                 </xsl:attribute>
@@ -1905,7 +1908,7 @@
             -->
             <xsl:if test="svg:desc">
               <xsl:element name="br" />
-              <xsl:element name="span">
+              <xsl:element name="span"><!--@todo change to prodnote-->
                 <xsl:attribute name="class">longdesc</xsl:attribute>
                 <xsl:value-of select="svg:desc/text()" />
               </xsl:element>
@@ -1923,6 +1926,9 @@
                     <xsl:attribute name="src">
                         <xsl:value-of select="draw:text-box/text:p/draw:frame/draw:image/@xlink:href" />
                     </xsl:attribute>
+                <xsl:attribute name="id">
+                    <xsl:value-of select="draw:text-box/text:p/draw:frame/@draw:name" />
+                </xsl:attribute>
                     <xsl:attribute name="alt">
                         <xsl:value-of select="draw:text-box/text:p/draw:frame/svg:title/text()" />
                     </xsl:attribute>
@@ -1939,8 +1945,13 @@
                         </xsl:call-template>
                     </xsl:attribute>
                 </xsl:element>
-                <caption>
-                    <xsl:value-of select="substring-after(draw:text-box/text:p,draw:text-box/text:p/draw:frame/svg:title/text())" />
+                <caption><!--@todo move before img element-->
+                    <xsl:attribute name="imgref">
+                        <xsl:value-of select="draw:text-box/text:p/draw:frame/@draw:name" />
+                    </xsl:attribute>
+                    <xsl:value-of select="draw:text-box/text:p/draw:frame/following-sibling::text()" />
+                    <xsl:value-of select="draw:text-box/text:p/draw:frame/following-sibling::text:sequence/text()" />
+                    <xsl:value-of select="draw:text-box/text:p/draw:frame/following-sibling::text:sequence/following-sibling::text()" />
                 </caption>
             </imggroup>
         </xsl:if>
