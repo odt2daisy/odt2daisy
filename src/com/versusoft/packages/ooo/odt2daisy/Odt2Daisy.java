@@ -63,9 +63,9 @@ public class Odt2Daisy {
     private File tmpFlatFile;
     private MySAXErrorHandler errorHandler;
     private boolean useHeadings;
-    private LinkedHashMap<String,String> oldAndNewImgNames;
-    private LinkedHashMap<String, String> incompatibleImages;
-    private boolean containsIncompatibleImages;
+    private LinkedHashMap<String,String> oldAndNewImgNames = null;
+    private LinkedHashMap<String, String> incompatibleImages = null;
+    private boolean containsIncompatibleImages = true;
     private String creatorMeta;
     private String titleMeta;
     private String sourcePublisher;
@@ -542,14 +542,18 @@ public class Odt2Daisy {
                 Configuration.namespace);
             logger.fine("XPath for draw:frame/@draw:name = " + xpath.toString());
             if( imgName != null &&
-                 !(imgName.toLowerCase().endsWith("png") ||
-                  imgName.toLowerCase().endsWith("jpg") ||
-                  imgName.toLowerCase().endsWith("jpeg")) ) {
+                 !(newName.toLowerCase().endsWith("png") ||
+                  newName.toLowerCase().endsWith("jpg") ||
+                  newName.toLowerCase().endsWith("jpeg")) ) {
                 incompatImg.put(imgName, entry.getKey());
+                logger.fine("Incompatible image found: " + imgName + " / " + newName);
             }
         }
-        //if(incompatImg != null)
-        //    logger.fine("Incompatible images: " + incompatImg.toString());
+        if(incompatImg != null && !incompatImg.isEmpty()) {
+            logger.fine("Incompatible images (LinkedHashMap): " + incompatImg.toString());
+        } else {
+            logger.fine("No incompatible images!");
+        }
         return incompatImg;
     }
 
