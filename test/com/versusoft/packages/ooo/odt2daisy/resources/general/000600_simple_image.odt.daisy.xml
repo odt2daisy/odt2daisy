@@ -36,7 +36,7 @@
          <level1>
             <h1>Simple Image</h1>
                <p>
-                  <img src="000600_simple_image.odt.images/0.gif" alt="" width="122" height="109"/>
+                  <img src="000600_simple_image.odt.images/0.gif" id="graphics1" alt="" width="122" height="109"/>
                </p>
          </level1>
       </bodymatter>

@@ -37,8 +37,8 @@
             <h1>Image with alternate text &amp; caption</h1>
             <p>
                <imggroup>
-                  <img src="000602_image_with_alttext_and_caption.odt.images/0.gif" alt="DAISY Logo" width="122" height="109"/>
-                  <caption>Illustration 1: This is the DAISY Logo</caption>
+                  <caption imgref="graphics1">Illustration 1: This is the DAISY Logo</caption>
+                  <img src="000602_image_with_alttext_and_caption.odt.images/0.gif" id="graphics1" alt="DAISY Logo" width="122" height="109"/>
                </imggroup>
             </p>
          </level1>

@@ -36,7 +36,7 @@
          <level1>
             <h1>Image with alternate text</h1>
             <p>
-               <img src="000601_image_with_alttext.odt.images/0.gif" alt="DAISY Logo" width="122" height="109"/>
+               <img src="000601_image_with_alttext.odt.images/0.gif" id="graphics1" alt="DAISY Logo" width="122" height="109"/>
             </p>
          </level1>
       </bodymatter>
