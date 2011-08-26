@@ -343,15 +343,15 @@ public class Odt2Daisy {
             imagesProcessing(dtbookFile, imageDir);
 
         } catch (SAXException ex) {
-            logger.log(Level.SEVERE, null, ex);
+            logger.log(Level.SEVERE, "SAX Exception!", ex);
         } catch (IOException ex) {
-            logger.log(Level.SEVERE, null, ex);
+            logger.log(Level.SEVERE, "IO Exception!", ex);
         } catch (ParserConfigurationException ex) {
-            logger.log(Level.SEVERE, null, ex);
+            logger.log(Level.SEVERE, "ParserConfigurationException!", ex);
         } catch (TransformerConfigurationException ex) {
-            logger.log(Level.SEVERE, null, ex);
+            logger.log(Level.SEVERE, "TransformerConfigurationException!", ex);
         } catch (TransformerException ex) {
-            logger.log(Level.SEVERE, null, ex);
+            logger.log(Level.SEVERE, "TransformerException! Locator= " + ex.getLocator(), ex);
         }
 
 
@@ -360,13 +360,13 @@ public class Odt2Daisy {
             applyXSLT(dtbookFile);
 
         } catch (MalformedURLException ex) {
-            logger.log(Level.SEVERE, null, ex);
+            logger.log(Level.SEVERE, "MalformedURL Exception!", ex);
         } catch (IOException ex) {
-            logger.log(Level.SEVERE, null, ex);
+            logger.log(Level.SEVERE, "IO Exception!", ex);
         } catch (TransformerConfigurationException ex) {
-            logger.log(Level.SEVERE, null, ex);
+            logger.log(Level.SEVERE, "TransformerConfigurationException!", ex);
         } catch (TransformerException ex) {
-            logger.log(Level.SEVERE, null, ex);
+            logger.log(Level.SEVERE, "TransformerException! Locator= " + ex.getLocator(), ex);
         }
 
         if (isWriteCSSParam()) {
