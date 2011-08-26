@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+        <!--     This DAISY Book was generated with odt2daisy            -->
+        <!--     More info at http://odt2daisy.sourceforge.net           -->
+        <!--     © Copyright 2008-2011 - Vincent Spiewak & contributors  -->
+        
+        
+<!DOCTYPE dtbook
+          PUBLIC "-//NISO//DTD dtbook 2005-3//EN" 
+          "http://www.daisy.org/z3986/2005/dtbook-2005-3.dtd">
+
+                
+                <dtbook xmlns="http://www.daisy.org/z3986/2005/dtbook/" version="2005-3" xml:lang="en-GB">
+   <head>
+      <meta name="dc:Identifier" content="no-uid"/>
+      <meta name="dc:Language" content="en-GB"/>
+      <meta name="dc:Title" content="Test Document for Language Changes inside Document"/>
+      <meta name="dc:Creator" content="Christophe Strobbe"/>
+      <meta name="dc:Publisher" content="Undefined Publisher"/>
+      <meta name="dtb:sourceTitle" content="Test Document for Language Changes inside Document"/>
+      <meta name="dtb:producer" content="Undefined Producer"/>
+      <meta name="dc:Date" content="2011-08-25"/>
+      <meta name="dc:Type" content="Text"/>
+      <meta name="dc:Format" content="ANSI/NISO Z39.86-2005"/>
+      <meta name="dtb:uid" content="no-uid"/>
+      <meta name="dtb:revision" content="14"/>
+      <meta name="dtb:revisionDate" content="2011-08-25"/>
+      <meta name="Generator" content="odt2daisy 2.1.1 by Vincent Spiewak"/>
+   </head>
+   <book>
+      <frontmatter>
+         <doctitle>Test Document for Language Changes inside Document</doctitle>
+         <docauthor>Christophe Strobbe</docauthor>
+         <!--[FrontMatter Mode: Basic]-->
+         <level1 class="title_page">
+            <h1>Title Page</h1>
+            <p>Test Document for Language Changes inside Document</p>
+            <p>Base document in British English, with Asian language and CTL language set to none (at document level); language changes in spans inside paragraphs. For Asian languages, Western language and CTL language are set to “None”. For CTL languages, Western language and Asian language are set to “None”.</p>
+         </level1>
+      </frontmatter>
+      <bodymatter>
+         <level1>
+            <h1>Western Languages</h1>
+            <p>French (France): <span xml:lang="fr-FR">« Longtemps je me suis couché de bonne heure... » </span>.</p>
+            <p>Esperanto: <span xml:lang="eo">Goo estas tabulludo ludata sur tabulo kun 19×19 linioj, kun nigraj kaj blankaj rondaj ŝtonetoj. Ĝi estas tre malnova ludo. Ĝi devenas el Ĉinio, kaj disvastiĝis ĉefe en orienta Azio. La reguloj uzataj en diversaj landoj estas preskaŭ la samaj, tamen ekzistas malgrandaj diferencoj ekz. pri poentokalkulado.</span> (Wikipedia: Go / Weiqi)</p>
+         </level1>
+         <level1>
+            <h1>Asian Languages</h1>
+            <p>Mandarin (Simplified Chinese Characters):  
+            <span xml:lang="zh-CN">围棋，是一种策略性二人棋类（也有联棋或团队对战模式，有二对二、一人对多、多对多等形式，参见“团队围棋”一节），使用格状棋盘及黑白二色棋子进行对弈，过程中围地吃子，以所围“地”的大小决定胜负。中国古时有“弈”、“碁”（“棋”的异体字）、“手谈”等多种称谓，属琴棋书画四艺之一。</span> (Wikipedia: Go / Weiqi)</p>
+            <p>Mandarin (Traditional Chinese Characters, Taiwan): <span xml:lang="zh-TW">圍棋，是一種策略性二人棋類（也有聯棋或團隊對戰模式，有二對二、一人對多、多對多等形式，參見「團隊圍棋」一節），使用格狀棋盤及黑白二色棋子進行對弈，過程中圍地吃子，以所圍「地」的大小決定勝負。中國古時有「弈」、「碁」（「棋」的異體字）、「手談」等多種稱謂，屬琴棋書畫四藝之一。越南語為「Cờ vây」（漢字「碁圍」）。</span>(Wikipedia: Go / Weiqi)</p>
+            <p>Japanese: <span xml:lang="ja-JP">囲碁（いご）とは、2人で行うボードゲームの一種。交互に盤上に石を置いていき、自分の石で囲んだ領域の広さを争う。単に碁（ご）とも呼ばれる。</span> (Wikipedia: Go / Weiqi)</p>
+         </level1>
+         <level1>
+            <h1>CTL Languages (Complex Text Layout)</h1>
+            <p>Hindi: <span xml:lang="hi-IN">चीनी जनवादी गणराज्य जिसे प्रायः चीन नाम से भी सम्बोधित किया जाता है, पूर्वी एशिया में स्थित एक देश है। १.३ अरब निवासियों के साथ यह विश्व का सर्वाधिक जनसंख्या वाला देश है और ९६,४१,१४४ वर्ग किलोमीटर क्षेत्रफल के साथ यह रूस और कनाडा के बाद विश्व का तीसरा सबसे बड़ा क्षेत्रफल वाला देश है। इतना विशाल क्षेत्रफल होने के कारण इसकी सीमा से लगते देशों की संख्या भी विश्व में सर्वाधिक (रूस के बराबर) है जो इस प्रकार है (उत्तर से दक्षिणावर्त्त): रूस, मंगोलिया, उत्तर कोरिया, वियतनाम, लाओस, म्यान्मार, भारत, भूटान, नेपाल, पाकिस्तान, अफ़्गानिस्तान, ताजिकिस्तान, किर्गिस्तान, और कज़ाख़िस्तान। उत्तर पूर्व में जापान और दक्षिण कोरिया मुख्य भूमि से दूरी पर स्थित हैं।</span> (Wikipedia: People's Republic of China)</p>
+         </level1>
+      </bodymatter>
+   </book>
+</dtbook>
