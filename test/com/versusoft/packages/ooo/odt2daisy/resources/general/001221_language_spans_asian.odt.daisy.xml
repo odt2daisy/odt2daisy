@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+        <!--     This DAISY Book was generated with odt2daisy            -->
+        <!--     More info at http://odt2daisy.sourceforge.net           -->
+        <!--     © Copyright 2008-2011 - Vincent Spiewak & contributors  -->
+        
+        
+<!DOCTYPE dtbook
+          PUBLIC "-//NISO//DTD dtbook 2005-3//EN" 
+          "http://www.daisy.org/z3986/2005/dtbook-2005-3.dtd">
+
+                
+                <dtbook xmlns="http://www.daisy.org/z3986/2005/dtbook/" version="2005-3" xml:lang="en-GB">
+   <head>
+      <meta name="dc:Identifier" content="no-uid"/>
+      <meta name="dc:Language" content="en-GB"/>
+      <meta name="dc:Title" content="Test Document: English Text with Some Content in Chinese (Simplified)"/>
+      <meta name="dc:Creator" content="Christophe Strobbe"/>
+      <meta name="dc:Publisher" content="Undefined Publisher"/>
+      <meta name="dtb:sourceTitle" content="Test Document: English Text with Some Content in Chinese (Simplified)"/>
+      <meta name="dtb:producer" content="Undefined Producer"/>
+      <meta name="dc:Date" content="2011-08-26"/>
+      <meta name="dc:Type" content="Text"/>
+      <meta name="dc:Format" content="ANSI/NISO Z39.86-2005"/>
+      <meta name="dtb:uid" content="no-uid"/>
+      <meta name="dtb:revision" content="2"/>
+      <meta name="dtb:revisionDate" content="2011-08-26"/>
+      <meta name="Generator" content="odt2daisy 2.1.1 by Vincent Spiewak"/>
+   </head>
+   <book>
+      <frontmatter>
+         <doctitle>Test Document: English Text with Some Content in Chinese (Simplified)</doctitle>
+         <docauthor>Christophe Strobbe</docauthor>
+         <!--[FrontMatter Mode: Basic]-->
+         <level1 class="title_page">
+            <h1>Title Page</h1>
+            <p>Test Document: English Text with Some Content in Chinese (Simplified)</p>
+            <p>When creating this document, the following language settings applied: Western language was set to English (UK), Asian language was set to None, CTL language was set to None.</p>
+         </level1>
+      </frontmatter>
+      <bodymatter>
+         <level1>
+            <h1>Test Content</h1>
+            <p>I'd like to make a reservation for tonight: <span xml:lang="zh-CN">我想预定今晚的座位。</span>.</p>
+         </level1>
+      </bodymatter>
+   </book>
+</dtbook>
