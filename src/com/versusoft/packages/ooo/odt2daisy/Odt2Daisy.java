@@ -343,15 +343,15 @@ public class Odt2Daisy {
             imagesProcessing(dtbookFile, imageDir);
 
         } catch (SAXException ex) {
-            logger.log(Level.SEVERE, "SAX Exception!", ex);
+            logger.log(Level.SEVERE, "SAX Exception during imagesProcessing!", ex);
         } catch (IOException ex) {
-            logger.log(Level.SEVERE, "IO Exception!", ex);
+            logger.log(Level.SEVERE, "IO Exception during imagesProcessing!", ex);
         } catch (ParserConfigurationException ex) {
-            logger.log(Level.SEVERE, "ParserConfigurationException!", ex);
+            logger.log(Level.SEVERE, "ParserConfigurationException during imagesProcessing!", ex);
         } catch (TransformerConfigurationException ex) {
-            logger.log(Level.SEVERE, "TransformerConfigurationException!", ex);
+            logger.log(Level.SEVERE, "TransformerConfigurationException during imagesProcessing!", ex);
         } catch (TransformerException ex) {
-            logger.log(Level.SEVERE, "TransformerException! Locator= " + ex.getLocator(), ex);
+            logger.log(Level.SEVERE, "TransformerException during imagesProcessing! Locator= " + ex.getLocator(), ex);
         }
 
 
@@ -360,13 +360,13 @@ public class Odt2Daisy {
             applyXSLT(dtbookFile);
 
         } catch (MalformedURLException ex) {
-            logger.log(Level.SEVERE, "MalformedURL Exception!", ex);
+            logger.log(Level.SEVERE, "MalformedURL Exception during applyXLT!", ex);
         } catch (IOException ex) {
-            logger.log(Level.SEVERE, "IO Exception!", ex);
+            logger.log(Level.SEVERE, "IO Exception during applyXLT!", ex);
         } catch (TransformerConfigurationException ex) {
-            logger.log(Level.SEVERE, "TransformerConfigurationException!", ex);
+            logger.log(Level.SEVERE, "TransformerConfigurationException during applyXLT!", ex);
         } catch (TransformerException ex) {
-            logger.log(Level.SEVERE, "TransformerException! Locator= " + ex.getLocator(), ex);
+            logger.log(Level.SEVERE, "TransformerException during applyXLT! Locator= " + ex.getLocator(), ex);
         }
 
         if (isWriteCSSParam()) {
