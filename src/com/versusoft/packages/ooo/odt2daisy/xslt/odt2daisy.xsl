@@ -2078,36 +2078,37 @@
 
     <xsl:template name="addLangAttrPara">
         <!-- @todo add Asian and CTL languages -->
-        <xsl:variable name="language"
-                      select="//style:style[@style:name=(current()/@text:style-name)]/
-        style:text-properties/@fo:language"/>
-        <xsl:variable name="country"
-                      select="//style:style[@style:name=(current()/@text:style-name)]/
-        style:text-properties/@fo:country"/>
-        <xsl:if test="$language and $country">
+        <xsl:variable name="westernLang"
+                      select="//style:style[@style:name=(current()/@text:style-name)]/style:text-properties/@fo:language"/>
+        <xsl:variable name="westernCountry"
+                      select="//style:style[@style:name=(current()/@text:style-name)]/style:text-properties/@fo:country"/>
+        <xsl:if test="$westernLang and $westernCountry">
             <xsl:attribute name="xml:lang">
-                <xsl:value-of select="$language" />
-                <xsl:text>-</xsl:text>
-                <xsl:value-of select="$country" />
+                <xsl:value-of select="$westernLang" /><xsl:text>-</xsl:text><xsl:value-of select="$westernCountry" />
             </xsl:attribute>
         </xsl:if>
     </xsl:template>
 
     <xsl:template name="addLangAttrSpan">
         <!-- @todo add Asian and CTL languages -->
-        <xsl:variable name="language"
-                      select="//style:style[@style:name=(current()/@text:style-name)]
-        /style:text-properties/@fo:language"/>
-        <xsl:variable name="country"
-                      select="//style:style[@style:name=(current()/@text:style-name)]
-        /style:text-properties/@fo:country"/>
-        <xsl:if test="$language and $country">
-            <xsl:attribute name="xml:lang">
-                <xsl:value-of select="$language" />
-                <xsl:text>-</xsl:text>
-                <xsl:value-of select="$country" />
-            </xsl:attribute>
-        </xsl:if>
+        <xsl:variable name="westernLang"
+                      select="//style:style[@style:name=(current()/@text:style-name)]/style:text-properties/@fo:language"/>
+        <xsl:variable name="westernCountry"
+                      select="//style:style[@style:name=(current()/@text:style-name)]/style:text-properties/@fo:country"/>
+        <xsl:choose>
+            <!-- Esperanto:  fo:language="eo" fo:country="none" -->
+            <xsl:when test="($westernLang and $westernCountry) and not(starts-with($westernLang, 'false')) and not($westernLang = 'zxx') and not($westernCountry = 'none')">
+                <xsl:attribute name="xml:lang">
+                    <xsl:value-of select="$westernLang" /><xsl:text>-</xsl:text><xsl:value-of select="$westernCountry" />
+                </xsl:attribute>
+            </xsl:when>
+            <!-- E.g. French:  fo:language="fr" fo:country="FR" -->
+            <xsl:when test="($westernLang and $westernCountry) and not(starts-with($westernLang, 'false')) and not($westernLang = 'zxx') and $westernCountry = 'none'">
+                <xsl:attribute name="xml:lang">
+                    <xsl:value-of select="$westernLang" />
+                </xsl:attribute>
+            </xsl:when>
+        </xsl:choose>
     </xsl:template>
 
     <xsl:template name="formatDate">
