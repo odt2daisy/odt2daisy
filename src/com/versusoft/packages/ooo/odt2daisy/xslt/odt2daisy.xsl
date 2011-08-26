@@ -2090,11 +2090,43 @@
     </xsl:template>
 
     <xsl:template name="addLangAttrSpan">
-        <!-- @todo add Asian and CTL languages -->
         <xsl:variable name="westernLang"
                       select="//style:style[@style:name=(current()/@text:style-name)]/style:text-properties/@fo:language"/>
         <xsl:variable name="westernCountry"
                       select="//style:style[@style:name=(current()/@text:style-name)]/style:text-properties/@fo:country"/>
+        <xsl:variable name="asianLang">
+            <xsl:choose>
+                <xsl:when test="//style:style[@style:name=(current()/@text:style-name)]/style:text-properties/@style:language-asian">
+                    <xsl:value-of select="//style:style[@style:name=(current()/@text:style-name)]/style:text-properties/@style:language-asian"/>
+                </xsl:when>
+                <xsl:otherwise><xsl:value-of select="false()" /></xsl:otherwise>
+            </xsl:choose>
+        </xsl:variable>
+        <xsl:variable name="asianCountry">
+            <xsl:choose>
+                <xsl:when test="$asianLang and //style:style[@style:name=(current()/@text:style-name)]/style:text-properties/@style:country-asian">
+                    <xsl:value-of select="//style:style[@style:name=(current()/@text:style-name)]/style:text-properties/@style:country-asian"/>
+                </xsl:when>
+                <xsl:otherwise><xsl:value-of select="false()" /></xsl:otherwise>
+            </xsl:choose>
+        </xsl:variable>
+        <xsl:variable name="ctlLang">
+            <xsl:choose>
+                <xsl:when test="//style:style[@style:name=(current()/@text:style-name)]/style:text-properties/@style:language-complex">
+                    <xsl:value-of select="//style:style[@style:name=(current()/@text:style-name)]/style:text-properties/@style:language-complex"/>
+                </xsl:when>
+                <xsl:otherwise><xsl:value-of select="false()" /></xsl:otherwise>
+            </xsl:choose>
+        </xsl:variable>
+        <xsl:variable name="ctlCountry">
+            <xsl:choose>
+                <xsl:when test="$ctlLang and //style:style[@style:name=(current()/@text:style-name)]/style:text-properties/@style:country-complex">
+                    <xsl:value-of select="//style:style[@style:name=(current()/@text:style-name)]/style:text-properties/@style:country-complex"/>
+                </xsl:when>
+                <xsl:otherwise><xsl:value-of select="false()" /></xsl:otherwise>
+            </xsl:choose>
+        </xsl:variable>
+
         <xsl:choose>
             <!-- Esperanto:  fo:language="eo" fo:country="none" -->
             <xsl:when test="($westernLang and $westernCountry) and not(starts-with($westernLang, 'false')) and not($westernLang = 'zxx') and not($westernCountry = 'none')">
@@ -2106,6 +2138,37 @@
             <xsl:when test="($westernLang and $westernCountry) and not(starts-with($westernLang, 'false')) and not($westernLang = 'zxx') and $westernCountry = 'none'">
                 <xsl:attribute name="xml:lang">
                     <xsl:value-of select="$westernLang" />
+                </xsl:attribute>
+            </xsl:when>
+            <!-- Following code for Asian languages causes an error for 1 unit test:
+              odt2daisy-specific/000401_autocorrection_emtpy_heading.odt
+              "TransformerConfigurationException: Could not compile stylesheet"
+            -->
+            <!-- E.g. Chinese (simplified, China):  fo:language="zxx" fo:country="none" style:language-asian="zh" style:country-asian="CN" -->
+            <xsl:when test="($asianLang and $asianCountry) and not($asianLang = 'zxx') and not(starts-with($asianLang, 'false')) and not($asianCountry = 'none') and starts-with($ctlLang, 'false')">
+                <xsl:attribute name="xml:lang">
+                    <xsl:value-of select="$asianLang" /><xsl:text>-</xsl:text><xsl:value-of select="$asianCountry" />
+                </xsl:attribute>
+            </xsl:when>
+            <xsl:when test="($asianLang and $asianCountry) and not(($asianLang = 'zxx')) and not(starts-with($asianLang, 'false')) and $asianCountry = 'none' and starts-with($ctlLang, 'false')">
+                <xsl:attribute name="xml:lang">
+                    <xsl:value-of select="$asianLang" />
+                </xsl:attribute>
+            </xsl:when>
+            <!-- Following code for CTL languages causes an error in 2 unit tests:
+              odt2daisy-specific/000302_frontmatter_advanced.odt
+              odt2daisy-specific/000401_autocorrection_emtpy_heading.odt
+              "TransformerConfigurationException: Could not compile stylesheet"
+            -->
+            <!-- E.g. Hindi:  fo:language="zxx" fo:country="none" style:language-complex="hi" style:country-complex="IN" -->
+            <xsl:when test="($ctlLang and $ctlCountry) and not($ctlLang = 'zxx') and not(starts-with($ctlLang, 'false')) and not($ctlCountry = 'none')">
+                <xsl:attribute name="xml:lang">
+                    <xsl:value-of select="$ctlLang" /><xsl:text>-</xsl:text><xsl:value-of select="$ctlCountry" />
+                </xsl:attribute>
+            </xsl:when>
+            <xsl:when test="($ctlLang and $ctlCountry) and not($ctlLang = 'zxx') and not(starts-with($ctlLang, 'false')) and $ctlCountry = 'none'">
+                <xsl:attribute name="xml:lang">
+                    <xsl:value-of select="$ctlLang" />
                 </xsl:attribute>
             </xsl:when>
         </xsl:choose>
