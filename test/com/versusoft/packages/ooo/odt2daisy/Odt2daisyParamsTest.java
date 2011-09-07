@@ -89,7 +89,7 @@ public class Odt2daisyParamsTest {
         //String basename = odt.substring(0, odt.lastIndexOf('.'));
         String pathDir = this.getClass().getResource(dir).getFile();
 
-        Odt2Daisy odt2daisy = new Odt2Daisy(pathDir + odt); //@@todo add initial output directory URL?
+        Odt2Daisy odt2daisy = new Odt2Daisy(pathDir + odt);
         odt2daisy.init();
         odt2daisy.setUidParam("no-uid");
         odt2daisy.setWriteCSSParam(false);
