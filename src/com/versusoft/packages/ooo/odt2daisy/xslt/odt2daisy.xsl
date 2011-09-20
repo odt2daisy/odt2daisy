@@ -170,6 +170,7 @@
     
     <!-- XSLT Parameters  -->
     <xsl:param name="DEBUG" select="false()" />
+    <xsl:param name="SUPPORT_NONWESTERN_LANGS" select="false()" />
     <xsl:param name="L10N_Title_Page" select="'Title Page'" />
     <xsl:param name="L10N_Blank_Page_X" select="'Page @, Blank page'" />
     <xsl:param name="paramUID" select="'Undefined UID'" />
@@ -2130,15 +2131,15 @@
         <xsl:choose>
             <!-- Esperanto:  fo:language="eo" fo:country="none" -->
             <xsl:when test="($westernLang and $westernCountry) and not(starts-with($westernLang, 'false')) and not($westernLang = 'zxx') and not($westernCountry = 'none')">
-                <xsl:attribute name="xml:lang">
-                    <xsl:value-of select="$westernLang" /><xsl:text>-</xsl:text><xsl:value-of select="$westernCountry" />
+            <xsl:attribute name="xml:lang">
+                    <xsl:value-of select="$westernLang" />-<xsl:value-of select="$westernCountry" />
                 </xsl:attribute>
             </xsl:when>
             <!-- E.g. French:  fo:language="fr" fo:country="FR" -->
             <xsl:when test="($westernLang and $westernCountry) and not(starts-with($westernLang, 'false')) and not($westernLang = 'zxx') and $westernCountry = 'none'">
                 <xsl:attribute name="xml:lang">
-                    <xsl:value-of select="$westernLang" />
-                </xsl:attribute>
+                <xsl:value-of select="$westernLang" />
+            </xsl:attribute>
             </xsl:when>
             <!-- Following code for Asian languages causes an error for 1 unit test:
               odt2daisy-specific/000401_autocorrection_emtpy_heading.odt
@@ -2147,7 +2148,7 @@
             <!-- E.g. Chinese (simplified, China):  fo:language="zxx" fo:country="none" style:language-asian="zh" style:country-asian="CN" -->
             <xsl:when test="($asianLang and $asianCountry) and not($asianLang = 'zxx') and not(starts-with($asianLang, 'false')) and not($asianCountry = 'none') and starts-with($ctlLang, 'false')">
                 <xsl:attribute name="xml:lang">
-                    <xsl:value-of select="$asianLang" /><xsl:text>-</xsl:text><xsl:value-of select="$asianCountry" />
+                    <xsl:value-of select="$asianLang" />-<xsl:value-of select="$asianCountry" />
                 </xsl:attribute>
             </xsl:when>
             <xsl:when test="($asianLang and $asianCountry) and not(($asianLang = 'zxx')) and not(starts-with($asianLang, 'false')) and $asianCountry = 'none' and starts-with($ctlLang, 'false')">
@@ -2163,7 +2164,7 @@
             <!-- E.g. Hindi:  fo:language="zxx" fo:country="none" style:language-complex="hi" style:country-complex="IN" -->
             <xsl:when test="($ctlLang and $ctlCountry) and not($ctlLang = 'zxx') and not(starts-with($ctlLang, 'false')) and not($ctlCountry = 'none')">
                 <xsl:attribute name="xml:lang">
-                    <xsl:value-of select="$ctlLang" /><xsl:text>-</xsl:text><xsl:value-of select="$ctlCountry" />
+                    <xsl:value-of select="$ctlLang" />-<xsl:value-of select="$ctlCountry" />
                 </xsl:attribute>
             </xsl:when>
             <xsl:when test="($ctlLang and $ctlCountry) and not($ctlLang = 'zxx') and not(starts-with($ctlLang, 'false')) and $ctlCountry = 'none'">
