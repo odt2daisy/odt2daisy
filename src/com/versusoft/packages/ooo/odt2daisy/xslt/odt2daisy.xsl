@@ -8,7 +8,7 @@
 /**
  *  odt2daisy - OpenDocument to DAISY XML/Audio
  *
- *  (c) Copyright 2008 - 20011 by Vincent Spiewak and contributors, All Rights Reserved.
+ *  (c) Copyright 2008 - 20012 by Vincent Spiewak and contributors, All Rights Reserved.
  *
  *  This program is free software; you can redistribute it and/or modify
  *  it under the terms of the GNU General Lesser Public License as published by
@@ -35,7 +35,7 @@
     
     Levels                    => Para Style Heading_1 ... Heading_N
       - Alternative Markup    => Export Dialog Param
-    Front Matter              => Auto or Before BodyMatterStart Section
+    Front Matter              => Auto or Before BodyMatterStart Section [@todo: anything inside PreliminaryPages]
     Doctitle 	              => Export Dialog Param
     Docauthor 	              => Export Dialog Param
     Title Page                => -
@@ -43,17 +43,17 @@
     Dedication                => -
     Preface                   => -
     Table of Contents         => OOo TOC
-    Body Matter               => Auto or After BodyMatterStart Section
+    Body Matter               => Auto or After BodyMatterStart Section [@todo: anything after PreliminaryPages and before Supplement1]
     Part 	              => Template "Part" or "DAISY TOP ELEMENT" meta:user-defined
     Chapter 	              => Template "Chapter" 
     Section, Subsection, ...  => Template "Section"
-    Rear Matter               => Auto or After RearMatterStart Section
+    Rear Matter               => Auto or After RearMatterStart Section [@todo: anything inside Supplement1, Supplement2, ...]
     Appendix                  => -
     Glossary 	              => -
     Bibliography              => -
     Index                     => -
     Divisions                 => Sections
-		
+
     
     Block Elements 		
     ==============
@@ -74,7 +74,7 @@
     Rear-Note 	              => -
     Paragraph 	              => default for text:p
     Producer's Note 	      => Custom Style
-    Quotation 	              => Custom Style
+    Quotation 	              => Custom Style [@todo Quotations ?]
     Sample 	              => Custom Style
     Notice 	              => removed since 2005-3
     Sidebar 	              => OOo Frames
@@ -86,7 +86,7 @@
     Anchor 	              => OOo Bookmark 
     Abbreviation 	      => Custom Style
     Acronym 	              => Custom Style
-    Computer Code 	      => Custom Style
+    Computer Code 	      => Custom Style [@todo Char. Style Source Text]
     Defining Instance 	      => -
     Emphasis 	              => Char Style Emphasis
     Horizontal Rule 	      => removed since 2005-3 
@@ -209,6 +209,9 @@
                 <xsl:text>"</xsl:text>
             </xsl:processing-instruction>
         </xsl:if>
+        <!-- @todo: Replace BodyMatterStart & RearMatterStart approach with system used by odt2braille:
+          see https://sourceforge.net/tracker/?func=detail&aid=3411889&group_id=272398&atid=1158054
+        -->
         <xsl:variable name="advFrontMatter" select="/office:document/office:body/office:text/text:section[@text:name='BodyMatterStart'][1]" />
         <xsl:variable name="advRearMatter" select="/office:document/office:body/office:text/text:section[@text:name='RearMatterStart'][1]" />
 
@@ -365,6 +368,9 @@
                       </xsl:for-each>
                     -->
                     <xsl:choose>
+                        <!-- @todo: Replace BodyMatterStart & RearMatterStart approach with system used by odt2braille:
+                          see https://sourceforge.net/tracker/?func=detail&aid=3411889&group_id=272398&atid=1158054
+                        -->
                         <xsl:when test="$advFrontMatter">
                             <xsl:comment>[FrontMatter Mode: Advanced]</xsl:comment>
                             <xsl:call-template name="titlePage" />
@@ -383,7 +389,7 @@
                     <!-- We start with the first title of level 1 -->
                     <xsl:choose>
                         
-                        <!-- Adv Matter Mode-->
+                        <!-- Advanced Matter Mode-->
                         <xsl:when test="$advFrontMatter">
                             <xsl:apply-templates select="/office:document/office:body/office:text/text:section[@text:name='BodyMatterStart'][1]/following-sibling::*[1]" mode="hierarchy">
                                 <xsl:with-param name="source" select="'book'"/>
@@ -441,6 +447,9 @@
                         </xsl:otherwise>
                     </xsl:choose>
                 </xsl:element><!-- END BODYMATTER ELEMENT -->
+                <!-- @todo: Replace BodyMatterStart & RearMatterStart approach with system used by odt2braille:
+                  see https://sourceforge.net/tracker/?func=detail&aid=3411889&group_id=272398&atid=1158054
+                -->
                 <xsl:if test="$advRearMatter">
                     <xsl:element name="rearmatter">
                         <xsl:apply-templates select="/office:document/office:body/office:text/text:section[@text:name='RearMatterStart']/following-sibling::*[1]" mode="hierarchy" />
