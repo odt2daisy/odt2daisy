@@ -240,7 +240,7 @@ public class CommandLineGUI {
         System.out.println("-pr      set Producer");
         System.out.println("-alt     use ALTernate level markup");
         System.out.println("");
-        System.out.println("(C) Copyright 2008 - 2009 by Vincent Spiewak, All Rights Reserved");
+        System.out.println("(C) Copyright 2008 - 2012 by Vincent Spiewak, All Rights Reserved");
 
     }
 }
