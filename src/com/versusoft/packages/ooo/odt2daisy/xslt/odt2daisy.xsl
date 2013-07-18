@@ -1526,22 +1526,11 @@
         </list>
     </xsl:template>
     <xsl:template name="scanTocEntry">
-        <xsl:variable name="entry">
-            <xsl:apply-templates select="." />
-        </xsl:variable>
-        <xsl:value-of select="substring-before($entry,$TAB)" />
+        <xsl:value-of select=".//text()[1]" />
     </xsl:template>
     <xsl:template name="scanTocPagenum">
-        <xsl:variable name="entry">
-            <xsl:apply-templates select="." />
-        </xsl:variable>
-        <xsl:value-of select="substring-after($entry,$TAB)" />
+        <xsl:value-of select=".//text()[2]" />
     </xsl:template>
-    <xsl:template match="text:tab">
-        <xsl:value-of select="$TAB" />
-    </xsl:template>
-    
-    
     
     <!--
      ============
