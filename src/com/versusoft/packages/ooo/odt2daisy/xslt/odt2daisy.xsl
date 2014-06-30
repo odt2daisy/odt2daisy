@@ -310,10 +310,6 @@
                     <meta name="dc:Source"
                           content="{/office:document/office:meta/meta:user-defined[@meta:name='dc:source']/text()}" />
                 </xsl:if>
-                <xsl:if test="/office:document/office:meta/dc:title">
-                    <meta name="dtb:sourceTitle"
-                          content="{/office:document/office:meta/dc:title/text()}"/>
-                </xsl:if>
                 <xsl:if test="/office:document/office:meta/meta:user-defined[@meta:name='dtb:sourcepublisher']">
                     <meta name="dtb:sourcePublisher"
                           content="{/office:document/office:meta/meta:user-defined[@meta:name='dtb:sourcepublisher']/text()}" />

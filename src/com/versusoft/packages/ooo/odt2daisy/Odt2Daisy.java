@@ -585,6 +585,7 @@ public class Odt2Daisy {
                     "/office:document/office:meta/dc:creator/text()",
                     Configuration.namespace);
         }
+        creator = creator.trim();
         return creator;
     }
 
@@ -605,6 +606,7 @@ public class Odt2Daisy {
                 "/office:document/office:body/office:text/text:p[@text:style-name='Title'][1]/text()",
                 Configuration.namespace);
         }
+        title = title.trim();
         logger.fine("DocumentTitle=\'" + title + "\'");
         return title;
     }
@@ -673,6 +675,7 @@ public class Odt2Daisy {
         srcPublisher = XPathUtils.evaluateString(tmpFlatFile.toURL().openStream(),
                 "/office:document/office:meta/meta:user-defined[@meta:name='dtb:sourcepublisher']/text()",
                 Configuration.namespace);
+        srcPublisher = srcPublisher.trim();
         logger.fine("SourcePublisher=\'" + srcPublisher + "\'");
         return srcPublisher;
     }
@@ -688,6 +691,7 @@ public class Odt2Daisy {
         producer = XPathUtils.evaluateString(tmpFlatFile.toURL().openStream(),
                 "/office:document/office:meta/meta:user-defined[@meta:name='dtb:producer']/text()",
                 Configuration.namespace);
+        producer = producer.trim();
         logger.fine("DAISYProducer=\'" + producer + "\'");
         return producer;
     }
@@ -703,6 +707,7 @@ public class Odt2Daisy {
         publisher = XPathUtils.evaluateString(tmpFlatFile.toURL().openStream(),
                 "/office:document/office:meta/meta:user-defined[@meta:name='dtb:publisher']/text()",
                 Configuration.namespace);
+        publisher = publisher.trim();
         logger.fine("DAISYPublisher=\'" + publisher + "\'");
         return publisher;
     }
